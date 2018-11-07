@@ -1,0 +1,8 @@
+
+\.idea/
+
+*.class
+
+OnDemandCafe\.iml
+
+out/production/OnDemandCafe/sample/
