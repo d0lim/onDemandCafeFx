@@ -1,8 +1,86 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+           <children>
+               <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+                   <tabs>
+                       <Tab text="Preset">
+                           <content>
+                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                   <children>
+                                       <ScrollPane prefHeight="720.0" prefWidth="1280.0">
+                                           <content>
+                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="784.0">
+                                                   <children>
+                                                       <GridPane prefHeight="720.0" prefWidth="1280.0">
+                                                           <columnConstraints>
+                                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                           </columnConstraints>
+                                                           <rowConstraints>
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                           </rowConstraints>
+                                                           <children>
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Americano" />
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Cafe Latte" GridPane.columnIndex="1" />
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Cafe Mocha" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Caramel Machiato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Cafucino" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                                               <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="304.0" text="Affocato" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                           </children>
+                                                       </GridPane>
+                                                   </children>
+                                               </AnchorPane>
+                                           </content>
+                                       </ScrollPane>
+                                   </children>
+                               </AnchorPane>
+                           </content>
+                       </Tab>
+                       <Tab text="Make My Own">
+                           <content>
+                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                   <children>
+                                       <ScrollPane prefHeight="720.0" prefWidth="1280.0">
+                                           <content>
+                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="339.0" prefWidth="599.0">
+                                                   <children>
+                                                       <GridPane prefHeight="720.0" prefWidth="1280.0">
+                                                           <columnConstraints>
+                                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                           </columnConstraints>
+                                                           <rowConstraints>
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                           </rowConstraints>
+                                                       </GridPane>
+                                                   </children>
+                                               </AnchorPane>
+                                           </content>
+                                       </ScrollPane>
+                                   </children>
+                               </AnchorPane>
+                           </content>
+                       </Tab>
+                   </tabs>
+               </TabPane>
+           </children>
+       </AnchorPane>
+   </children>
+</Pane>
