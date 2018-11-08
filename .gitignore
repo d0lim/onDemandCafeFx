@@ -8,3 +8,5 @@ OnDemandCafe\.iml
 out/production/OnDemandCafe/sample/
 
 src/\.DS_Store
+
+src/forTest/
