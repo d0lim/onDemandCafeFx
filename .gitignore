@@ -10,3 +10,9 @@ out/production/OnDemandCafe/sample/
 src/\.DS_Store
 
 src/forTest/
+
+\.DS_Store
+
+TestingProject/src/
+
+TestingProject/
