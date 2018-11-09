@@ -1,8 +1,8 @@
-package ondemandcafe.view;
+package cafe.view;
 
-import ondemandcafe.MainApp;
-import ondemandcafe.model.Ingredient;
-import ondemandcafe.model.IngredientHandler;
+import cafe.MainApp;
+import cafe.model.Ingredient;
+import cafe.model.IngredientHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
