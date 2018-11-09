@@ -18,3 +18,13 @@ TestingProject/src/
 TestingProject/
 
 out/
+
+bin/
+
+\.settings/
+
+\.project
+
+\.classpath
+
+build\.fxbuild
