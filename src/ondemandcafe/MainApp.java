@@ -1,4 +1,4 @@
-package cafe;
+package ondemandcafe;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import cafe.view.IngredientEditController;
-import cafe.view.IngredientOverview;
-import cafe.model.Ingredient;
-import cafe.model.IngredientHandler;
+import ondemandcafe.view.IngredientEditController;
+import ondemandcafe.view.IngredientOverview;
+import ondemandcafe.model.Ingredient;
+import ondemandcafe.model.IngredientHandler;
 
 public class MainApp extends Application {
 
