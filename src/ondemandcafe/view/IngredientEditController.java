@@ -1,4 +1,4 @@
-package cafe.view;
+package ondemandcafe.view;
 
 
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import cafe.model.Ingredient;
+import ondemandcafe.model.Ingredient;
 
 public class IngredientEditController {
 

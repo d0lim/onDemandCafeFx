@@ -1,4 +1,4 @@
-package cafe.model;
+package ondemandcafe.model;
 
 
 import javafx.collections.FXCollections;
