@@ -60,7 +60,7 @@ public class MainApp extends Application {
 	            
 	            IngredientHandler temp=new IngredientHandler();
 	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp);
+	            controller.setMainApp(temp,this);
 
 	            
 	        } catch (IOException e) {
@@ -68,8 +68,8 @@ public class MainApp extends Application {
 	        }
 	    }
 	   public boolean showIngredientEditDialog(Ingredient ingredient) {
-		
 		 try {
+			
 			 	FXMLLoader loader=new FXMLLoader();
 			 	loader.setLocation(MainApp.class.getResource("view/IngredientEditDialog.fxml"));
 			 	AnchorPane page = loader.load();
@@ -77,8 +77,9 @@ public class MainApp extends Application {
 
 			 	Stage dialogStage = new Stage();
 			 	
+		 	
 		        dialogStage.setTitle("Edit Ingredient");
-		        dialogStage.initModality(Modality.APPLICATION_MODAL);
+		        dialogStage.initModality(Modality.WINDOW_MODAL);
 		        dialogStage.initOwner(primaryStage);
 
 		      
@@ -86,6 +87,8 @@ public class MainApp extends Application {
 			 	dialogStage.setScene(scene);
 		       
 
+			 	
+			 	
 		        IngredientEditController controller = loader.getController();
 		        controller.setDialogStage(dialogStage);
 		        controller.setIngredient(ingredient);
@@ -93,7 +96,10 @@ public class MainApp extends Application {
 		        
 		        dialogStage.showAndWait();
 		        
+		        
 		        return controller.isOkClicked();
+			 
+			
 		 }
 		 
 		 catch(IOException e) {
