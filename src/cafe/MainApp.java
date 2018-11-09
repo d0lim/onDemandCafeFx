@@ -72,15 +72,15 @@ public class MainApp extends Application {
 		 try {
 			 	FXMLLoader loader=new FXMLLoader();
 			 	loader.setLocation(MainApp.class.getResource("view/IngredientEditDialog.fxml"));
-			 	AnchorPane page=(AnchorPane) loader.load();
+			 	AnchorPane page = loader.load();
 			 
-			 
+
 			 	Stage dialogStage = new Stage();
 			 	
 		        dialogStage.setTitle("Edit Ingredient");
 		        dialogStage.initModality(Modality.APPLICATION_MODAL);
 		        dialogStage.initOwner(primaryStage);
-		        
+
 		      
 		        Scene scene = new Scene(page);
 			 	dialogStage.setScene(scene);
