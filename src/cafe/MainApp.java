@@ -18,7 +18,7 @@ import cafe.model.IngredientHandler;
 public class MainApp extends Application {
 
 	private Stage primaryStage;
-	private BorderPane rootLayout;
+	static  BorderPane rootLayout;
 	
 	
 	@Override
@@ -70,7 +70,7 @@ public class MainApp extends Application {
         }
     }
 
-	 public void showIngredientOverview() {
+	 public static void showIngredientOverview() {
 	        try {
 	            
 	            FXMLLoader loader = new FXMLLoader();
@@ -84,7 +84,7 @@ public class MainApp extends Application {
 	            
 	            IngredientHandler temp=new IngredientHandler();
 	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp,this);
+	            controller.setMainApp(temp);//,this);
 	            
 	            
 	        } catch (IOException e) {
@@ -93,7 +93,7 @@ public class MainApp extends Application {
 	    }
 
 	
-	   public boolean showIngredientEditDialog(Ingredient ingredient) {
+	   public static boolean showIngredientEditDialog(Ingredient ingredient) {
 		 try {
 			
 			 	FXMLLoader loader=new FXMLLoader();
@@ -106,7 +106,7 @@ public class MainApp extends Application {
 		 	
 		        dialogStage.setTitle("Edit Ingredient");
 		        dialogStage.initModality(Modality.WINDOW_MODAL);
-		        dialogStage.initOwner(primaryStage);
+		        //dialogStage.initOwner(primaryStage);
 
 		      
 		        Scene scene = new Scene(page);

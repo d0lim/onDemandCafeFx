@@ -39,9 +39,9 @@ public class IngredientOverview {
 	    }
 
 	
-	public void setMainApp(IngredientHandler ih,MainApp mainApp) {
+	public void setMainApp(IngredientHandler ih) {//,MainApp mainApp) {
 	        this.o = ih;
-	        this.mainApp = mainApp;//와대박 
+	        //this.mainApp = mainApp;//와대박 
 		// 주석 UTF8로 다시 적어주세용
 	        ingredientTable.setItems(o.getIngredients());
 	}
