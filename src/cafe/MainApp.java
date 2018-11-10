@@ -32,7 +32,7 @@ public class MainApp extends Application {
 
 	}
 	
-	private void start_program() {
+	public static void start_program() {
 		try {
 		 FXMLLoader loader = new FXMLLoader();
          loader.setLocation(MainApp.class.getResource("view/StartScreen.fxml"));
@@ -42,7 +42,7 @@ public class MainApp extends Application {
 		//첫화면띄우기
         
 		StartScreenController s=new StartScreenController();
-		s.setScreen(this);
+		//s.setScreen(this);
 		
 		rootLayout.requestFocus();
 		start.requestFocus();
@@ -84,7 +84,7 @@ public class MainApp extends Application {
 	            
 	            IngredientHandler temp=new IngredientHandler();
 	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp);//,this);
+	            controller.setMainApp(temp);
 	            
 	            
 	        } catch (IOException e) {

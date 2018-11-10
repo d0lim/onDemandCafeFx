@@ -24,13 +24,14 @@ public class StartScreenController {
 	@FXML
 	public void handlecustomer() {
 		System.out.println("clicked customer");
-		mainapp.showIngredientOverview();
+		
 	}
 	
 	
 	@FXML
 	public void handleowner() {
 		System.out.println("clicked owner");
+		mainapp.showIngredientOverview();
 	}
 	
 	

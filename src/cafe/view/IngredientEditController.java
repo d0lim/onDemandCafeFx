@@ -33,6 +33,7 @@ public class IngredientEditController {
 	
 	
 
+
 	public void setIngredient(Ingredient i) {
 		this.ingredient=i;
 		

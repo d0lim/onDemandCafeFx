@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class IngredientOverview {
 
@@ -25,7 +26,10 @@ public class IngredientOverview {
 	
 	private MainApp mainApp;
 	
-	
+	@FXML 
+	private void goback() {
+		MainApp.start_program();
+	}
 	
 	@FXML
 	private void initialize() {
@@ -36,6 +40,7 @@ public class IngredientOverview {
 	        
 	        ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->showIngredientDetails(newValue));
 	        
+	        ingredientTable.setItems(o.getIngredients());
 	    }
 
 	
@@ -43,7 +48,7 @@ public class IngredientOverview {
 	        this.o = ih;
 	        //this.mainApp = mainApp;//와대박 
 		// 주석 UTF8로 다시 적어주세용
-	        ingredientTable.setItems(o.getIngredients());
+	       // ingredientTable.setItems(o.getIngredients());
 	}
 	
 	private void showIngredientDetails(Ingredient i) {
