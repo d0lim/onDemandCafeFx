@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.view.StartScreenController">
+   <children>
+      <AnchorPane layoutX="-17.0" layoutY="-15.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="54.0" layoutY="128.0" mnemonicParsing="false" onAction="#handlecustomer" prefHeight="144.0" prefWidth="233.0" text="손님" />
+            <Button layoutX="318.0" layoutY="128.0" mnemonicParsing="false" onAction="#handleowner" prefHeight="144.0" prefWidth="240.0" text="사장" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

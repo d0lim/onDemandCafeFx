@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import cafe.view.IngredientEditController;
 import cafe.view.IngredientOverview;
+import cafe.view.StartScreenController;
 import cafe.model.Ingredient;
 import cafe.model.IngredientHandler;
 
@@ -27,9 +28,31 @@ public class MainApp extends Application {
 
         initRootLayout();
 
-        showIngredientOverview();
+        start_program();
 
 	}
+	
+	private void start_program() {
+		try {
+		 FXMLLoader loader = new FXMLLoader();
+         loader.setLocation(MainApp.class.getResource("view/StartScreen.fxml"));
+         AnchorPane start = (AnchorPane) loader.load();
+
+         rootLayout.setCenter(start);
+		//첫화면띄우기
+        
+		StartScreenController s=new StartScreenController();
+		s.setScreen(this);
+		
+		rootLayout.requestFocus();
+		start.requestFocus();
+		
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void initRootLayout() {
         try {
             // 주석 UTF8로 다시 적어주세용
@@ -41,6 +64,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,16 +84,18 @@ public class MainApp extends Application {
 	            
 	            IngredientHandler temp=new IngredientHandler();
 	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp);
-
+	            controller.setMainApp(temp,this);
+	            
 	            
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
 	    }
+
+	
 	   public boolean showIngredientEditDialog(Ingredient ingredient) {
-		
 		 try {
+			
 			 	FXMLLoader loader=new FXMLLoader();
 			 	loader.setLocation(MainApp.class.getResource("view/IngredientEditDialog.fxml"));
 			 	AnchorPane page = loader.load();
@@ -77,8 +103,9 @@ public class MainApp extends Application {
 
 			 	Stage dialogStage = new Stage();
 			 	
+		 	
 		        dialogStage.setTitle("Edit Ingredient");
-		        dialogStage.initModality(Modality.APPLICATION_MODAL);
+		        dialogStage.initModality(Modality.WINDOW_MODAL);
 		        dialogStage.initOwner(primaryStage);
 
 		      
@@ -86,6 +113,8 @@ public class MainApp extends Application {
 			 	dialogStage.setScene(scene);
 		       
 
+			 	
+			 	
 		        IngredientEditController controller = loader.getController();
 		        controller.setDialogStage(dialogStage);
 		        controller.setIngredient(ingredient);
@@ -93,7 +122,10 @@ public class MainApp extends Application {
 		        
 		        dialogStage.showAndWait();
 		        
+		        
 		        return controller.isOkClicked();
+			 
+			
 		 }
 		 
 		 catch(IOException e) {
@@ -107,6 +139,9 @@ public class MainApp extends Application {
 	        return primaryStage;
 	    }
 
+	 public MainApp Mainapp() {
+		 return this;
+	 }
 	
 	public static void main(String[] args) {
 		launch(args);

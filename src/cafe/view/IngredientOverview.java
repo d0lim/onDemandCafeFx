@@ -22,7 +22,10 @@ public class IngredientOverview {
 	private Label price;
 	
 	private IngredientHandler o;
+	
 	private MainApp mainApp;
+	
+	
 	
 	@FXML
 	private void initialize() {
@@ -35,8 +38,10 @@ public class IngredientOverview {
 	        
 	    }
 
-	public void setMainApp(IngredientHandler ih) {
+	
+	public void setMainApp(IngredientHandler ih,MainApp mainApp) {
 	        this.o = ih;
+	        this.mainApp = mainApp;//와대박 
 		// 주석 UTF8로 다시 적어주세용
 	        ingredientTable.setItems(o.getIngredients());
 	}
@@ -61,7 +66,7 @@ public class IngredientOverview {
 		}
 		else {
 			Alert alert=new Alert(AlertType.WARNING); // 주석 UTF8로 다시 적어주세용
-			//alert.initOwner(mainApp.getPrimaryStage());
+			//alert.initOwner(mainApp.getPrimaryStage());//왜 오류?
 			alert.setTitle("No selection");
 			alert.setHeaderText("No Ingredients Selected");
 			alert.setContentText("Please select an ingredient");
@@ -76,7 +81,7 @@ public class IngredientOverview {
 		
 		Ingredient temp=new Ingredient();
 		
-		boolean okClicked =mainApp.showIngredientEditDialog(temp);
+		boolean okClicked = mainApp.showIngredientEditDialog(temp);
 		if(okClicked) {
 			o.getIngredients().add(temp);
 		}
@@ -97,7 +102,7 @@ public class IngredientOverview {
 		}
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
-	        alert.initOwner(mainApp.getPrimaryStage());
+	        //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
 	        alert.setTitle("No Selection");
 	        alert.setHeaderText("No Ingredient Selected");
 	        alert.setContentText("Please select an ingredient");

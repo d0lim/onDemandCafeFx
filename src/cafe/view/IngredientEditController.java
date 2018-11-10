@@ -17,6 +17,8 @@ public class IngredientEditController {
 	
 	@FXML
 	private void initialize() {
+		name.setText("");
+		price.setText("");
 	}
 	
 	private Stage dialogStage;
@@ -27,6 +29,9 @@ public class IngredientEditController {
 	public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage; // 주석 UTF8로 다시 적어주세용
     }
+	
+	
+	
 
 	public void setIngredient(Ingredient i) {
 		this.ingredient=i;
