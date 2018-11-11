@@ -80,7 +80,7 @@ public class Receipt {
 
     @FXML
     private void handleNo() {
-        System.out.println("Print Receipt!");
+        System.out.println("Don't Print Receipt!");
         isBtnClicked = true;
         dialogStage.close();
     }
