@@ -90,6 +90,7 @@ public class CoffeeOverview {
         if (btnClicked) {
             coffeeCart = null;
             coffeeCart = FXCollections.observableArrayList();
+            selectedCoffeeTable.getItems().clear();
         }
     }
 
@@ -139,6 +140,7 @@ public class CoffeeOverview {
                 clicked.setPrice(temp.getPrice());
                 clicked.getIngreList().clear();
                 clicked.getIngreList().addAll(temp.getIngreList());
+                calculateSum();
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
             }
