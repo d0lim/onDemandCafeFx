@@ -20,7 +20,7 @@ public class IngredientHandler {
 		}
 	
 	 private static void init_i() {
-			//ArrayList<Ingredient> i_s=new ArrayList<Ingredient>();
+			
 			i_s.add(new Ingredient("espresso",2000));
 			i_s.add(new Ingredient("steamed milk",1000));
 			i_s.add(new Ingredient("water",3000));

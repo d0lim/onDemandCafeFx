@@ -12,7 +12,7 @@
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="selectedTable" layoutX="275.0" layoutY="7.0" prefHeight="272.0" prefWidth="311.0">
+                  <TableView fx:id="selectedTable" layoutX="276.0" layoutY="40.0" prefHeight="160.0" prefWidth="311.0">
                     <columns>
                       <TableColumn fx:id="selectedname" prefWidth="103.0" text="Selected" />
                         <TableColumn fx:id="selectedprice" prefWidth="65.0" text="Price" />
@@ -28,24 +28,31 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="ingredientTable" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn fx:id="ingredientTable" prefWidth="136.0" text="Ingredient" />
-                            <TableColumn prefWidth="14.0" text="C2" />
+                            <TableColumn fx:id="ingredientname" prefWidth="135.0" text="Ingredient" />
+                              <TableColumn fx:id="ing_check" minWidth="0.0" prefWidth="0.0" />
                           </columns>
                         </TableView>
                         <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                           <columns>
                             <TableColumn prefWidth="142.0" text="Coffee" />
-                            <TableColumn minWidth="8.0" prefWidth="8.0" text="C2" />
                           </columns>
                         </TableView>
                      </children>
                   </GridPane>
-                  <TextField layoutX="314.0" layoutY="296.0" prefHeight="29.0" prefWidth="136.0" />
-                  <Button layoutX="485.0" layoutY="296.0" mnemonicParsing="false" text="할인적용" />
-                  <Button layoutX="472.0" layoutY="350.0" mnemonicParsing="false" text="되돌리기" />
-                  <Label layoutX="461.0" layoutY="301.0" text="\%" />
+                  <TextField fx:id="percentage" layoutX="275.0" prefHeight="29.0" prefWidth="70.0" />
+                  <Button fx:id="cancelsale" layoutX="432.0" mnemonicParsing="false" onAction="#cancel_sale" text="되돌리기" />
+                  <Label layoutX="351.0" layoutY="5.0" text="\%" />
+                  <Button fx:id="onsale" layoutX="372.0" mnemonicParsing="false" onAction="#handle_sale" text="할인" />
+                  <TableView fx:id="selectedTable1" layoutX="276.0" layoutY="213.0" prefHeight="160.0" prefWidth="311.0">
+                     <columns>
+                        <TableColumn fx:id="selectedname1" prefWidth="103.0" text="Selected" />
+                        <TableColumn fx:id="selectedprice1" prefWidth="65.0" text="Price" />
+                        <TableColumn fx:id="changedprice1" prefWidth="142.0" text="Changed Price" />
+                     </columns>
+                  </TableView>
+                  <Button layoutX="533.0" mnemonicParsing="false" text="Back" />
                </children>
             </AnchorPane>
          </children>

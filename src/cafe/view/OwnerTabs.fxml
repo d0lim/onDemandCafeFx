@@ -9,15 +9,15 @@
    <children>
       <TabPane layoutX="115.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Ingredients">
+          <Tab fx:id="ingredientTab" onSelectionChanged="#initialize" text="Ingredients">
              <content>
-             		<fx:include fx:id="Ingredient" source="IngredientOverview.fxml" />
+             		<fx:include fx:id="IngredientAnchorPane" source="IngredientOverview.fxml" />
              </content>
           	</Tab>
           <Tab text="Coffee" />
-          <Tab text="Event">
+          <Tab fx:id="EventTab" onSelectionChanged="#initialize" text="Event">
              <content>
-             <fx:include fx:id="Event" source="Event.fxml" />
+             	<fx:include fx:id="EventAnchorPane" source="Event.fxml" />
              </content>
           </Tab>
         </tabs>

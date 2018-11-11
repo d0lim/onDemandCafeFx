@@ -71,7 +71,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-
+/*
 	 public static void showIngredientOverview() {
 	        try {
 	            
@@ -92,7 +92,7 @@ public class MainApp extends Application {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
-	    }
+	    }*/
 
 	 public static void showOwnerTabs() {
 		 try {
