@@ -7,21 +7,26 @@ import javafx.collections.ObservableList;
 
 public class IngredientHandler {
 
-	public static ObservableList<Ingredient> i_s = FXCollections.observableArrayList();
+    static private boolean isFirst = true;
 
-	 public ObservableList<Ingredient> getIngredients(){
-		 init_i();
-			return i_s;
-		}
+    public static ObservableList<Ingredient> i_s = FXCollections.observableArrayList();
 
-	private void init_i() {
-		//ArrayList<Ingredient> i_s=new ArrayList<Ingredient>();
-		i_s.add(new Ingredient("espresso",2000));
-		i_s.add(new Ingredient("steamed milk",1000));
-		i_s.add(new Ingredient("water",3000));
-		i_s.add(new Ingredient("chocolate syrup",5000));
-		
-	}
-	
-	
+    public ObservableList<Ingredient> getIngredients() {
+
+        if (isFirst) {
+            init_i();
+            isFirst = false;
+        }
+        return i_s;
+    }
+
+    private void init_i() {
+        //ArrayList<Ingredient> i_s=new ArrayList<Ingredient>();
+        i_s.add(new Ingredient("Espresso", 1000));
+        i_s.add(new Ingredient("Steamed Milk", 1000));
+        i_s.add(new Ingredient("Water", 500));
+        i_s.add(new Ingredient("Chocolate Syrup", 1000));
+
+    }
+
 }

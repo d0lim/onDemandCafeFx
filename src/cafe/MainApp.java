@@ -1,7 +1,9 @@
 package cafe;
 
-import java.io.IOException;
-
+import cafe.model.Coffee;
+import cafe.model.CoffeeHandler;
+import cafe.view.CoffeeEditController;
+import cafe.view.CoffeeOverview;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,35 +11,34 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import cafe.view.IngredientEditController;
-import cafe.view.IngredientOverview;
-import cafe.model.Ingredient;
-import cafe.model.IngredientHandler;
+
+import java.io.IOException;
 
 public class MainApp extends Application {
 
-	private Stage primaryStage;
-	private BorderPane rootLayout;
-	
-	
-	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("OOP Cafe");
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("OOP Cafe Coffee");
 
         initRootLayout();
 
-        showIngredientOverview();
+        showCoffeeOverview();
 
-	}
-	public void initRootLayout() {
+    }
+
+    public void initRootLayout() {
         try {
             // 주석 UTF8로 다시 적어주세용
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-			// 주석 UTF8로 다시 적어주세용
+            // 주석 UTF8로 다시 적어주세용
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -46,75 +47,70 @@ public class MainApp extends Application {
         }
     }
 
-	 public void showIngredientOverview() {
-	        try {
-	            
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("view/IngredientOverview.fxml"));
-	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
+    public void showCoffeeOverview() {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
+            AnchorPane IngredientOverview = (AnchorPane) loader.load();
 
 
+            // 주석 UTF8로 다시 적어주세용
+            rootLayout.setCenter(IngredientOverview);
 
-				// 주석 UTF8로 다시 적어주세용
-	            rootLayout.setCenter(IngredientOverview);
-	            
-	            IngredientHandler temp=new IngredientHandler();
-	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp,this);
+            CoffeeHandler temp = new CoffeeHandler();
+            CoffeeOverview controller = loader.getController();
+            controller.setMainApp(temp, this);
 
-	            
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	   public boolean showIngredientEditDialog(Ingredient ingredient) {
-		 try {
-			
-			 	FXMLLoader loader=new FXMLLoader();
-			 	loader.setLocation(MainApp.class.getResource("view/IngredientEditDialog.fxml"));
-			 	AnchorPane page = loader.load();
-			 
 
-			 	Stage dialogStage = new Stage();
-			 	
-		 	
-		        dialogStage.setTitle("Edit Ingredient");
-		        dialogStage.initModality(Modality.WINDOW_MODAL);
-		        dialogStage.initOwner(primaryStage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-		      
-		        Scene scene = new Scene(page);
-			 	dialogStage.setScene(scene);
-		       
+    public boolean showCoffeeEditDialog(Coffee coffee) {
+        try {
 
-			 	
-			 	
-		        IngredientEditController controller = loader.getController();
-		        controller.setDialogStage(dialogStage);
-		        controller.setIngredient(ingredient);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CoffeeEditDialog.fxml"));
+            AnchorPane page = loader.load();
 
-		        
-		        dialogStage.showAndWait();
-		        
-		        
-		        return controller.isOkClicked();
-			 
-			
-		 }
-		 
-		 catch(IOException e) {
-			 e.printStackTrace();
-			
-			 return false;
-		 }
-	 }
 
-	 public Stage getPrimaryStage() {
-	        return primaryStage;
-	    }
+            Stage dialogStage = new Stage();
 
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
+
+            dialogStage.setTitle("Edit Coffee");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            CoffeeEditController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setCoffee(coffee);
+
+
+            dialogStage.showAndWait();
+
+
+            return controller.isOkClicked();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
