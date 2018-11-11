@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import cafe.view.IngredientEditController;
 import cafe.view.IngredientOverview;
+import cafe.view.OwnerTabController;
 import cafe.view.StartScreenController;
 import cafe.model.Ingredient;
 import cafe.model.IngredientHandler;
@@ -46,7 +47,8 @@ public class MainApp extends Application {
 		
 		rootLayout.requestFocus();
 		start.requestFocus();
-		
+			
+			
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -92,6 +94,22 @@ public class MainApp extends Application {
 	        }
 	    }
 
+	 public static void showOwnerTabs() {
+		 try {
+			 FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/OwnerTabs.fxml"));
+	            AnchorPane OwnerTab = (AnchorPane) loader.load();
+	            
+	            rootLayout.setCenter(OwnerTab);
+	            
+	            OwnerTabController control=new OwnerTabController();
+	           // control.setMainApp()
+	            
+		 }
+		 catch (IOException e){
+			 e.printStackTrace();
+		 }
+	 }
 	
 	   public static boolean showIngredientEditDialog(Ingredient ingredient) {
 		 try {
