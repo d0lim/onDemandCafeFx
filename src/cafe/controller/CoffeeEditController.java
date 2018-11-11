@@ -62,7 +62,6 @@ public class CoffeeEditController {
 
         addButtonToIngreTable();
         addButtonToSelectedTable();
-        //ingreTable.getSelectionModel().selectedItemProperty().addListener(event -> editIngreSelection());
 
     }
 
@@ -181,6 +180,7 @@ public class CoffeeEditController {
             dialogStage.close();
         }
     }
+
 
     @FXML
     private void handleOk() {

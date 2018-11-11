@@ -85,6 +85,15 @@ public class CoffeeOverview {
      */
 
     @FXML
+    private void handleReceiptButton() {
+        boolean btnClicked = mainApp.showReceipt(this.coffeeCart);
+        if (btnClicked) {
+            coffeeCart = null;
+            coffeeCart = FXCollections.observableArrayList();
+        }
+    }
+
+    @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
         int okClicked = mainApp.showCoffeeEditDialog(temp, false);
