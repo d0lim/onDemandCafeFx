@@ -50,6 +50,10 @@ public class Coffee {
         return price.get();
     }
 
+    public IntegerProperty getPriceProperty() {
+        return price;
+    }
+
     public void setPrice(int c) {
         price.set(c);
     }

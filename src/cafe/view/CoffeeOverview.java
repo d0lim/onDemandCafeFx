@@ -3,12 +3,15 @@ package cafe.view;
 import cafe.MainApp;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.util.Callback;
+
+import java.util.Iterator;
 
 public class CoffeeOverview {
 
@@ -17,25 +20,41 @@ public class CoffeeOverview {
     @FXML
     private TableColumn<Coffee, String> coffeeName;
     @FXML
-    private Label name;
+    private TableColumn<Coffee, Integer> coffeePrice;
     @FXML
-    private Label price;
+    private Button newCoffee;
+    @FXML
+    private TableView<Coffee> selectedCoffeeTable;
+    @FXML
+    private TableColumn<Coffee, String> selectedCoffeeName;
+    @FXML
+    private TableColumn<Coffee, Integer> selectedCoffeePrice;
+    @FXML
+    private Label sum;
 
     private CoffeeHandler coffeeHandler;
 
     private MainApp mainApp;
 
-
+    private ObservableList<Coffee> coffeeCart = FXCollections.observableArrayList();
 
 
     @FXML
     private void initialize() {
 
+        //initialize cell datas
+
         coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        coffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
-        showCoffeeDetails(null);
+        selectedCoffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        selectedCoffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
-        coffeeTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showCoffeeDetails(newValue));
+        setCoffeeList();
+        addButtonToCoffeeTable();
+        addButtonToSelectedCoffeeTable();
+
+
 
     }
 
@@ -46,32 +65,20 @@ public class CoffeeOverview {
         coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
-    private void showCoffeeDetails(Coffee coffee) {
-        if (coffee != null) {
-            name.setText(coffee.getName());
-            price.setText(Integer.toString(coffee.getPrice()));
-        } else {
-            name.setText("");
-            price.setText("");
-        }
+    public void setCoffeeList() {
+        CoffeeHandler coffeeHandler = new CoffeeHandler();
+        this.coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
-    @FXML
-    private void handleDeleteCoffee() {
-        int selectedIndex = coffeeTable.getSelectionModel().getSelectedIndex();
-
-        if (selectedIndex >= 0) {
-            coffeeTable.getItems().remove(selectedIndex);
-        } else {
-            Alert alert = new Alert(AlertType.WARNING); // 주석 UTF8로 다시 적어주세용
-            //alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("No selection");
-            alert.setHeaderText("No Coffee Selected");
-            alert.setContentText("Please select an Coffee");
-
-            alert.showAndWait();
-        }
+    public void editCart(Coffee item, boolean add) {
+        if (add)
+            this.coffeeCart.add(item);
+        else
+            this.coffeeCart.remove(item);
+        this.selectedCoffeeTable.setItems(coffeeCart);
+        calculateSum();
     }
+
 
     @FXML
     private void handleNewCoffee() {
@@ -86,15 +93,15 @@ public class CoffeeOverview {
 
     }
 
-    @FXML
-    private void handleEditCoffee() {
-        Coffee selected = coffeeTable.getSelectionModel().getSelectedItem();
+    // Event of order button from callback function
+    private void handleMakeOrder(Coffee selected) {
+
         if (selected != null) {
 
             boolean okClicked = mainApp.showCoffeeEditDialog(selected);
 
             if (okClicked) {
-                showCoffeeDetails(selected);
+                editCart(selected, true);
             }
         } else {
             Alert alert = new Alert(AlertType.WARNING);
@@ -106,6 +113,77 @@ public class CoffeeOverview {
             alert.showAndWait();
 
         }
+    }
+
+    private void calculateSum() {
+        int sum = 0;
+        Iterator<Coffee> it = this.coffeeCart.iterator();
+        while (it.hasNext()) {
+            sum += it.next().getPrice();
+        }
+        this.sum.setText(sum + " ₩");
+    }
+
+    private void addButtonToCoffeeTable() {
+        TableColumn<Coffee, Void> colBtn = new TableColumn("");
+        Callback<TableColumn<Coffee, Void>, TableCell<Coffee, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
+                final TableCell<Coffee, Void> cell = new TableCell<>() {
+                    private final Button actionBtn = new Button("Add to Cart");
+                    {
+                        actionBtn.setOnAction((ActionEvent event) -> {
+                            Coffee clicked = getTableView().getItems().get(getIndex());
+                            handleMakeOrder(clicked);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(actionBtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        colBtn.setCellFactory(cellFactory);
+        coffeeTable.getColumns().add(colBtn);
+    }
+
+    private void addButtonToSelectedCoffeeTable() {
+        TableColumn<Coffee, Void> colBtn = new TableColumn("");
+        Callback<TableColumn<Coffee, Void>, TableCell<Coffee, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
+                final TableCell<Coffee, Void> cell = new TableCell<>() {
+                    private final Button actionBtn = new Button("Remove from Cart");
+                    {
+                        actionBtn.setOnAction((ActionEvent event) -> {
+                            Coffee clicked = getTableView().getItems().get(getIndex());
+                            editCart(clicked, false);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(actionBtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        colBtn.setCellFactory(cellFactory);
+        selectedCoffeeTable.getColumns().add(colBtn);
     }
 
 }
