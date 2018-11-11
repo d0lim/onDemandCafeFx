@@ -53,6 +53,7 @@ public class CoffeeOverview {
         setCoffeeList();
         addButtonToCoffeeTable();
         addButtonToSelectedCoffeeTable();
+        addEditButtonToSelectedCoffeeTable();
 
 
     }
@@ -85,19 +86,15 @@ public class CoffeeOverview {
 
     @FXML
     private void handleNewCoffee() {
-
         Coffee temp = new Coffee();
         int okClicked = mainApp.showCoffeeEditDialog(temp, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
         }
-
-
     }
 
     // Event of order button from callback function
     private void handleMakeOrder(Coffee selected) {
-
         if (selected != null) {
             Coffee temp = new Coffee();
             temp.setName(selected.getName());
@@ -117,9 +114,32 @@ public class CoffeeOverview {
             alert.setTitle("No Selection");
             alert.setHeaderText("No Coffee Selected");
             alert.setContentText("Please select an Coffee");
-
             alert.showAndWait();
+        }
+    }
 
+    private void handleEdit(Coffee clicked) {
+        if (selectedCoffeeTable != null) {
+            Coffee temp = new Coffee();
+            temp.setName(clicked.getName());
+            temp.setPrice(clicked.getPrice());
+            temp.getIngreList().addAll(clicked.getIngreList());
+            int okClicked = mainApp.showCoffeeEditDialog(temp, true);
+            if (okClicked == 1) {
+                clicked.setName(temp.getName());
+                clicked.setPrice(temp.getPrice());
+                clicked.getIngreList().clear();
+                clicked.getIngreList().addAll(temp.getIngreList());
+            } else if (okClicked == 2) {
+                coffeeHandler.getCoffees().add(temp);
+            }
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Coffee Selected");
+            alert.setContentText("Please select an Coffee");
+            alert.showAndWait();
         }
     }
 
@@ -176,6 +196,39 @@ public class CoffeeOverview {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
                             editCart(clicked, false);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(actionBtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        colBtn.setCellFactory(cellFactory);
+        selectedCoffeeTable.getColumns().add(colBtn);
+    }
+
+
+    private void addEditButtonToSelectedCoffeeTable() {
+        TableColumn<Coffee, Void> colBtn = new TableColumn("");
+        Callback<TableColumn<Coffee, Void>, TableCell<Coffee, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
+                final TableCell<Coffee, Void> cell = new TableCell<>() {
+                    private final Button actionBtn = new Button("Edit");
+
+                    {
+                        actionBtn.setOnAction((ActionEvent event) -> {
+                            Coffee clicked = getTableView().getItems().get(getIndex());
+                            handleEdit(clicked);
                         });
                     }
 
