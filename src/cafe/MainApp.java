@@ -2,8 +2,8 @@ package cafe;
 
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
-import cafe.view.CoffeeEditController;
-import cafe.view.CoffeeOverview;
+import cafe.controller.CoffeeEditController;
+import cafe.controller.CoffeeOverview;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
