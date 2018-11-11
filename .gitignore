@@ -28,3 +28,7 @@ bin/
 \.classpath
 
 build\.fxbuild
+
+src/cafe/controller/NewCoffeeOverview\.java
+
+src/cafe/view/NewCoffeeOverview\.fxml
