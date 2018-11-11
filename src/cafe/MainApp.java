@@ -1,10 +1,12 @@
 package cafe;
 
+import cafe.controller.Receipt;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
-import cafe.view.CoffeeEditController;
-import cafe.view.CoffeeOverview;
+import cafe.controller.CoffeeEditController;
+import cafe.controller.CoffeeOverview;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -65,6 +67,47 @@ public class MainApp extends Application {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean showReceipt(ObservableList<Coffee> coffeeCart) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Receipt.fxml"));
+            AnchorPane page = loader.load();
+
+
+            Stage dialogStage = new Stage();
+
+
+            dialogStage.setTitle("Receipt");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            Receipt controller = loader.getController();
+            controller.setCoffeeCart(coffeeCart);
+            controller.setDialogStage(dialogStage);
+
+            // need to set observable list to Receipt instance
+
+
+            dialogStage.showAndWait();
+
+
+            // return controller.isOkClicked();
+            // need to change isOKClicked to isButtonClicked
+            return controller.isBtnClicked();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return false;
         }
     }
 

@@ -1,4 +1,4 @@
-package cafe.view;
+package cafe.controller;
 
 import cafe.MainApp;
 import cafe.model.Coffee;
@@ -83,6 +83,15 @@ public class CoffeeOverview {
      * if okClicked == 1 -> ok button is clicked
      * if okClicked == 2 -> save as new menu
      */
+
+    @FXML
+    private void handleReceiptButton() {
+        boolean btnClicked = mainApp.showReceipt(this.coffeeCart);
+        if (btnClicked) {
+            coffeeCart = null;
+            coffeeCart = FXCollections.observableArrayList();
+        }
+    }
 
     @FXML
     private void handleNewCoffee() {
