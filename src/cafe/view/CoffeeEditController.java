@@ -47,8 +47,6 @@ public class CoffeeEditController {
     private void initialize() {
 
 
-
-
         name.setText("");
         sum.setText("₩");
 

@@ -8,7 +8,6 @@ import javafx.beans.property.StringProperty;
 public class Ingredient {
 
 
-
     private StringProperty name;
     private IntegerProperty price;
 

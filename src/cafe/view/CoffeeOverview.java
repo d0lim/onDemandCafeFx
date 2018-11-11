@@ -55,7 +55,6 @@ public class CoffeeOverview {
         addButtonToSelectedCoffeeTable();
 
 
-
     }
 
     public void setMainApp(CoffeeHandler coffeeHandler, MainApp mainApp) {
@@ -79,9 +78,9 @@ public class CoffeeOverview {
         calculateSum();
     }
 
-    /** if okClicked == 1 -> ok button is clicked
-     *  if okClicked == 2 -> save as new menu
-     *
+    /**
+     * if okClicked == 1 -> ok button is clicked
+     * if okClicked == 2 -> save as new menu
      */
 
     @FXML
@@ -140,6 +139,7 @@ public class CoffeeOverview {
             public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
                 final TableCell<Coffee, Void> cell = new TableCell<>() {
                     private final Button actionBtn = new Button("Add to Cart");
+
                     {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
@@ -171,6 +171,7 @@ public class CoffeeOverview {
             public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
                 final TableCell<Coffee, Void> cell = new TableCell<>() {
                     private final Button actionBtn = new Button("Remove from Cart");
+
                     {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
