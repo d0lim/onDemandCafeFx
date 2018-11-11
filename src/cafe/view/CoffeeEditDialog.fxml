@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="643.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.view.CoffeeEditController">
+<AnchorPane prefHeight="643.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.view.CoffeeEditController">
    <children>
       <GridPane layoutX="100.0" layoutY="48.0" prefHeight="381.0" prefWidth="400.0" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -36,8 +36,8 @@
             </TableView>
          </children>
       </GridPane>
-      <Button layoutX="110.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleOk" text="ok" />
-      <Button layoutX="256.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleCancel" text="no" />
+      <Button fx:id="okBtn" layoutX="218.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleOk" text="Add to Cart" />
+      <Button layoutX="315.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
       <TableView fx:id="selectedTable" layoutY="395.0" prefHeight="142.0" prefWidth="400.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="395.0">
         <columns>
           <TableColumn fx:id="selectedIngreName" prefWidth="281.0" text="Ingredients" />
@@ -48,5 +48,6 @@
          </columnResizePolicy>
       </TableView>
       <Label fx:id="sum" layoutX="256.0" layoutY="549.0" prefHeight="27.0" prefWidth="118.0" text="₩" textAlignment="RIGHT" />
+      <Button fx:id="saveBtn" layoutX="35.0" layoutY="602.0" mnemonicParsing="false" onAction="#handleSave" text="Save as new Menu" />
    </children>
 </AnchorPane>

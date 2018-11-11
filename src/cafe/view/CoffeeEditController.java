@@ -33,14 +33,22 @@ public class CoffeeEditController {
     private TableColumn<Ingredient, Integer> selectedIngrePrice;
     @FXML
     private Label sum;
+    @FXML
+    private Button saveBtn;
+    @FXML
+    private Button okBtn;
 
     private Stage dialogStage;
     private Coffee coffee;
-    private boolean okClicked = false;
+    private int clickedButton = 0;
 
 
     @FXML
     private void initialize() {
+
+
+
+
         name.setText("");
         sum.setText("₩");
 
@@ -72,6 +80,7 @@ public class CoffeeEditController {
 
     public void setCoffee(Coffee coffee) {
         this.coffee = coffee;
+
         name.setText(this.coffee.getName());
 
         // need to add logic about setting ingredients
@@ -80,7 +89,7 @@ public class CoffeeEditController {
     }
 
 
-    public void editIngreSelection(Ingredient clicked, boolean add) {
+    private void editIngreSelection(Ingredient clicked, boolean add) {
         if (add)
             this.coffee.getIngreList().add(clicked);
         else
@@ -90,6 +99,10 @@ public class CoffeeEditController {
         this.sum.setText(this.coffee.getPrice() + " ₩");
     }
 
+    public void setEditMode(boolean editMode) {
+        if (!editMode)
+            okBtn.setVisible(false);
+    }
 
     private void addButtonToIngreTable() {
         TableColumn<Ingredient, Void> colBtn = new TableColumn("");
@@ -98,6 +111,7 @@ public class CoffeeEditController {
             public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
                 final TableCell<Ingredient, Void> cell = new TableCell<>() {
                     private final Button actionBtn = new Button("Add");
+
                     {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Ingredient clicked = getTableView().getItems().get(getIndex());
@@ -129,6 +143,7 @@ public class CoffeeEditController {
             public TableCell<Ingredient, Void> call(final TableColumn<Ingredient, Void> param) {
                 final TableCell<Ingredient, Void> cell = new TableCell<>() {
                     private final Button actionBtn = new Button("Remove");
+
                     {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Ingredient clicked = getTableView().getItems().get(getIndex());
@@ -153,9 +168,20 @@ public class CoffeeEditController {
         selectedTable.getColumns().add(colBtn);
     }
 
+    public int isOkClicked() {
+        return clickedButton;
+    }
 
-    public boolean isOkClicked() {
-        return okClicked;
+    @FXML
+    private void handleSave() {
+        if (isInputValid()) {
+            coffee.setName(name.getText());
+            coffee.setPrice(this.coffee.getPrice());
+
+            // okClicked = true;
+            clickedButton = 2;
+            dialogStage.close();
+        }
     }
 
     @FXML
@@ -164,7 +190,8 @@ public class CoffeeEditController {
             coffee.setName(name.getText());
             coffee.setPrice(this.coffee.getPrice());
 
-            okClicked = true;
+            // okClicked = true;
+            clickedButton = 1;
             dialogStage.close();
         }
     }

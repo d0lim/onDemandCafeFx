@@ -68,7 +68,7 @@ public class MainApp extends Application {
         }
     }
 
-    public boolean showCoffeeEditDialog(Coffee coffee) {
+    public int showCoffeeEditDialog(Coffee coffee, boolean editMenu) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -90,7 +90,7 @@ public class MainApp extends Application {
             CoffeeEditController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setCoffee(coffee);
-
+            controller.setEditMode(editMenu);
 
             dialogStage.showAndWait();
 
@@ -101,7 +101,7 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
 
-            return false;
+            return 0;
         }
     }
 

@@ -79,14 +79,17 @@ public class CoffeeOverview {
         calculateSum();
     }
 
+    /** if okClicked == 1 -> ok button is clicked
+     *  if okClicked == 2 -> save as new menu
+     *
+     */
 
     @FXML
     private void handleNewCoffee() {
 
         Coffee temp = new Coffee();
-
-        boolean okClicked = mainApp.showCoffeeEditDialog(temp);
-        if (okClicked) {
+        int okClicked = mainApp.showCoffeeEditDialog(temp, false);
+        if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
         }
 
@@ -97,11 +100,17 @@ public class CoffeeOverview {
     private void handleMakeOrder(Coffee selected) {
 
         if (selected != null) {
+            Coffee temp = new Coffee();
+            temp.setName(selected.getName());
+            temp.setPrice(selected.getPrice());
+            temp.getIngreList().addAll(selected.getIngreList());
 
-            boolean okClicked = mainApp.showCoffeeEditDialog(selected);
+            int okClicked = mainApp.showCoffeeEditDialog(temp, true);
 
-            if (okClicked) {
-                editCart(selected, true);
+            if (okClicked == 1) {
+                editCart(temp, true);
+            } else if (okClicked == 2) {
+                coffeeHandler.getCoffees().add(temp);
             }
         } else {
             Alert alert = new Alert(AlertType.WARNING);

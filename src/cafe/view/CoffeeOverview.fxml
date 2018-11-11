@@ -22,7 +22,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="newCoffee" layoutX="25.0" layoutY="629.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="61.0" prefWidth="739.0" text="Make My Own" />
+                  <Button fx:id="newCoffee" layoutX="25.0" layoutY="629.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="61.0" prefWidth="739.0" text="Make My Own Menu" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="257.0">
