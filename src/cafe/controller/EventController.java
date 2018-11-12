@@ -1,6 +1,8 @@
 package cafe.controller;
 
 import cafe.MainApp;
+import cafe.model.Coffee;
+import cafe.model.CoffeeHandler;
 import cafe.model.Ingredient;
 import cafe.model.IngredientHandler;
 import javafx.collections.FXCollections;
@@ -41,7 +43,12 @@ public class EventController {
 	
 	@FXML
 	private TableColumn<Ingredient,String> ingredientname;
-	
+	@FXML
+    private TableView<Coffee> coffeeTable;
+	@FXML
+    private TableColumn<Coffee, String> coffeeName;
+	@FXML
+    private TableColumn<Coffee, Integer> coffeeOriginalPrice;
 
 	@FXML
 	private TableView<Ingredient>  selectedIngTable;
@@ -70,77 +77,13 @@ public class EventController {
 	
 	//Ingredient temp_ing=new Ingredient();
 	Ingredient canceling_i=new Ingredient();
+
+	CoffeeHandler coffeeHandler;
 	
 	
 	@FXML
 	private void initialize() {
-		/*ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		
-		ingredientTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		ingredientTable.getSelectionModel().setCellSelectionEnabled(true);
-		ingredientTable.setItems(IngredientHandler.getIngredients());
-		
 
-		selected_i = ingredientTable.getSelectionModel().getSelectedItems();*/
-		//selectedTable.setRowFactory(cellData->selectedItems);
-		/*ingredientTable.getFocusModel().focusedCellProperty().addListener((obs, oldVal, newVal) -> {
-
-		    if(newVal.getTableColumn() != null){
-		        ingredientTable.getSelectionModel().selectRange(0, newVal.getTableColumn(), ingredientTable.getItems().size(), newVal.getTableColumn());
-		        System.out.println("Selected TableColumn: "+ newVal.getTableColumn().getText());
-		       // System.out.println("Selected column index: "+ newVal.getColumn());
-		        
-		        selected_i.getSelectionModel().getSelectedItems();
-		        selectedTable.setItems((ObservableList<cafe.controller.EventController.Wrapper>) newVal.getTableColumn());
-		    }
-		});*/
-		//TableColumn<Ingredient,Boolean>  checkCol = new TableColumn<>("Check");
-		/*ing_check.setCellFactory(
-		        CheckBoxTableCell.forTableColumn(ing_check)
-			    );
-		ing_check.setCellValueFactory(
-			            new PropertyValueFactory<>("selected")
-			    );
-		
-			    ingredientname.setCellValueFactory(
-			            new PropertyValueFactory<>("name")
-			    );*/
-			   /* ing_check.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
-			    ing_check.setCellFactory(param -> new CheckBoxTableCell<Ingredient, Boolean>());
-			    ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-    */
-		/*ColumnSelectRow columSelect = new ColumnSelectRow(); 
-		ingredientTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		ing_check.getColumns().add(columSelect);
-		ingredientname.setCellValueFactory(cellData->cellData.getValue().getNameProperty());
-		ingredientTable.getColumns().add(ingredientname);*/
-		/*ingredientTable.setRowFactory(new Callback<TableView<Box>, TableRow<Box>>() {
-		    @Override
-		    public TableRow<Box> call(TableView<Box> tableView2)
-		    {
-		        final TableRow<Box> row = new TableRow<>();
-
-		        row.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-		            @Override
-		            public void handle(MouseEvent event)
-		            {
-		                final int index = row.getIndex();
-
-		                if (index >= 0 && index < boxTable.getItems().size())
-		                {
-		                    if(boxTable.getSelectionModel().isSelected(index))
-		                        boxTable.getSelectionModel().clearSelection(index);
-		                    else
-		                        boxTable.getSelectionModel().select(index);
-
-		                    event.consume();
-		                }
-		            }
-		        });
-		        return row;
-		    }
-		});
-		*/
 		ingredientTable.setItems(IngredientHandler.getIngredients());
 		ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
@@ -153,7 +96,11 @@ public class EventController {
 		selectedIngTable.setItems(selected_is);
 		selectedingname.setCellValueFactory(cellData->cellData.getValue().getNameProperty());
 		selectedingprice.setCellValueFactory(cellData->cellData.getValue().getSaleProperty().asObject());
+
 		changedingprice.setCellValueFactory(cellData->cellData.getValue().getPriceProperty().asObject());
+		coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+		coffeeOriginalPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
+		setCoffeeList();
 		
 	}
 	
@@ -172,6 +119,12 @@ public class EventController {
 			tosale();
 		}
 	}
+
+	private void setCoffeeList() {
+	    this.coffeeHandler = new CoffeeHandler();
+	    this.coffeeTable.setItems(coffeeHandler.getCoffees());
+    }
+
 	private void tosale() {
 		selected_i.swap_price();
 	}

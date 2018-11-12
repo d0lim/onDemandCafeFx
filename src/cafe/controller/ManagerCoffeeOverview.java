@@ -21,8 +21,7 @@ public class ManagerCoffeeOverview {
     private TableColumn<Coffee, String> coffeeName;
     @FXML
     private TableColumn<Coffee, Integer> coffeePrice;
-    @FXML
-    private Button newCoffee;
+
 
 
     private CoffeeHandler coffeeHandler;
@@ -46,15 +45,9 @@ public class ManagerCoffeeOverview {
 
     }
 
-    public void setMainApp(CoffeeHandler coffeeHandler, MainApp mainApp) {
-        this.coffeeHandler = coffeeHandler;
-        this.mainApp = mainApp;
-        // 주석 UTF8로 다시 적어주세용
-        coffeeTable.setItems(coffeeHandler.getCoffees());
-    }
 
     public void setCoffeeList() {
-        CoffeeHandler coffeeHandler = new CoffeeHandler();
+        this.coffeeHandler =  new CoffeeHandler();
         this.coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
