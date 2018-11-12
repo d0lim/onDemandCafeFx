@@ -1,10 +1,7 @@
 package cafe;
 
-import cafe.controller.CoffeeOverview;
-import cafe.controller.Receipt;
-import cafe.model.Coffee;
-import cafe.model.CoffeeHandler;
-import cafe.controller.CoffeeEditController;
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +10,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import cafe.controller.CoffeeEditController;
+import cafe.controller.CoffeeOverview;
 import cafe.controller.IngredientEditController;
 import cafe.controller.OwnerTabController;
+import cafe.controller.Receipt;
 import cafe.controller.StartScreenController;
+import cafe.model.Coffee;
+import cafe.model.CoffeeHandler;
 import cafe.model.Ingredient;
 
-import java.io.IOException;
 
 public class MainApp extends Application {
 
@@ -30,12 +31,6 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("OOP Cafe");
-
-
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("OOP Cafe Coffee");
 
         initRootLayout();
 
@@ -72,7 +67,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            // 주석 UTF8로 다시 적어주세용
+			// 주석 UTF8로 다시 적어주세용
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -81,6 +76,26 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+	/* public static void showCoffeeOverview() {
+	        try {
+
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
+	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
+
+
+	            // 주석 UTF8로 다시 적어주세용
+	            rootLayout.setCenter(IngredientOverview);
+
+	            CoffeeHandler temp = new CoffeeHandler();
+	            CoffeeOverview controller = loader.getController();
+	            controller.setMainApp(temp, this);
+
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }*/
 /*
 	 public static void showIngredientOverview() {
 	        try {
@@ -89,9 +104,6 @@ public class MainApp extends Application {
 	            loader.setLocation(MainApp.class.getResource("view/IngredientOverview.fxml"));
 	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
-            AnchorPane IngredientOverview = (AnchorPane) loader.load();
 
 
 				// 주석 UTF8로 다시 적어주세용
@@ -123,6 +135,22 @@ public class MainApp extends Application {
 			 e.printStackTrace();
 		 }
 	 }
+	 public static void showCustomerPage() {
+		 try {
+			 FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
+	            AnchorPane CustomerPage = (AnchorPane) loader.load();
+	            
+	            rootLayout.setCenter(CustomerPage);
+	            
+	            //Coffee control=new OwnerTabController();
+	           // control.setMainApp()
+	            
+		 }
+		 catch (IOException e){
+			 e.printStackTrace();
+		 }
+	 }
 	
 	   public static boolean showIngredientEditDialog(Ingredient ingredient) {
 		 try {
@@ -139,10 +167,10 @@ public class MainApp extends Application {
 		        dialogStage.initModality(Modality.WINDOW_MODAL);
 		        //dialogStage.initOwner(primaryStage);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+		      
+		        Scene scene = new Scene(page);
+			 	dialogStage.setScene(scene);
+		       
 
 			 	
 			 	
@@ -166,6 +194,85 @@ public class MainApp extends Application {
 		 }
 	 }
 
+	   public static boolean showReceipt(ObservableList<Coffee> coffeeCart) {
+	        try {
+
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/Receipt.fxml"));
+	            AnchorPane page = loader.load();
+
+
+	            Stage dialogStage = new Stage();
+
+
+	            dialogStage.setTitle("Receipt");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            //dialogStage.initOwner(primaryStage);
+
+
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            Receipt controller = loader.getController();
+	            controller.setCoffeeCart(coffeeCart);
+	            controller.setDialogStage(dialogStage);
+
+	            // need to set observable list to Receipt instance
+
+
+	            dialogStage.showAndWait();
+
+
+	            // return controller.isOkClicked();
+	            // need to change isOKClicked to isButtonClicked
+	            return controller.isBtnClicked();
+
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+
+	            return false;
+	        }
+	    }
+	   public static int showCoffeeEditDialog(Coffee coffee, boolean editMenu) {
+	        try {
+
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/CoffeeEditDialog.fxml"));
+	            AnchorPane page = loader.load();
+
+
+	            Stage dialogStage = new Stage();
+
+
+	            dialogStage.setTitle("Edit Coffee");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            //dialogStage.initOwner(primaryStage);
+
+
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            CoffeeEditController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setCoffee(coffee);
+	            controller.setEditMode(editMenu);
+
+	            dialogStage.showAndWait();
+
+
+	            return controller.isOkClicked();
+
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+
+	            return 0;
+	        }
+	    }
+	 public Stage getPrimaryStage() {
+	        return primaryStage;
+	    }
 
 	 public MainApp Mainapp() {
 		 return this;

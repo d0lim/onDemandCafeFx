@@ -24,7 +24,7 @@ public class StartScreenController {
 	@FXML
 	public void handlecustomer() {
 		System.out.println("clicked customer");
-		
+		MainApp.showCustomerPage();
 	}
 	
 	

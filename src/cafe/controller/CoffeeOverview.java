@@ -140,9 +140,14 @@ public class CoffeeOverview {
      * if okClicked == 2 -> save as new menu
      */
 
+    @FXML 
+	private void goback() {
+		MainApp.start_program();
+	}
+    
     @FXML
     private void handleReceiptButton() {
-        boolean btnClicked = mainApp.showReceipt(this.coffeeCart);
+        boolean btnClicked = MainApp.showReceipt(this.coffeeCart);
         if (btnClicked) {
             coffeeCart = null;
             coffeeCart = FXCollections.observableArrayList();
@@ -153,7 +158,7 @@ public class CoffeeOverview {
     @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
-        int okClicked = mainApp.showCoffeeEditDialog(temp, false);
+        int okClicked = MainApp.showCoffeeEditDialog(temp, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
             setMenu();
