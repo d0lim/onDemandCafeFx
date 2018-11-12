@@ -23,7 +23,7 @@ public class OwnerTabController {
 	
 	
 	//private Event Controller page event;
-	
+	IngredientOverview a=new IngredientOverview();
 	@FXML
 	private void initialize() {
 		

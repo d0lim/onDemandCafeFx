@@ -164,7 +164,7 @@ public class EventController {
 			//percentage에 정수가 안들어오는 경우 체크해줘야됨
 			if(selected_i!=null) {
 			
-			changedprice-=selected_i.getPrice()  * Integer.parseInt(percentage.getText())/ 100;
+			changedprice=selected_i.getPrice()-(selected_i.getPrice()  * Integer.parseInt(percentage.getText())/ 100);
 		
 			selected_i.setSalePrice((int)changedprice);//여기오류
 			selected_is.add(selected_i);

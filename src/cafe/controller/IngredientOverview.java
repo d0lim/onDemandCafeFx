@@ -30,7 +30,6 @@ public class IngredientOverview {
 	private void goback() {
 		MainApp.start_program();
 	}
-	
 	@FXML
 	private void initialize() {
 	       
