@@ -12,11 +12,11 @@
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="selectedTable" layoutX="276.0" layoutY="40.0" prefHeight="160.0" prefWidth="311.0">
+                  <TableView fx:id="selectedIngTable" layoutX="276.0" layoutY="40.0" prefHeight="160.0" prefWidth="311.0">
                     <columns>
-                      <TableColumn fx:id="selectedname" prefWidth="103.0" text="Selected" />
-                        <TableColumn fx:id="selectedprice" prefWidth="65.0" text="Price" />
-                        <TableColumn fx:id="changedprice" prefWidth="142.0" text="Changed Price" />
+                      <TableColumn fx:id="selectedingname" prefWidth="103.0" text="Selected" />
+                        <TableColumn fx:id="selectedingprice" prefWidth="65.0" text="Price" />
+                        <TableColumn fx:id="changedingprice" prefWidth="142.0" text="Changed Price" />
                     </columns>
                   </TableView>
                   <GridPane layoutX="-8.0" layoutY="-5.0" prefHeight="400.0" prefWidth="272.0">

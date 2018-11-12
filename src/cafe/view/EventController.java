@@ -36,20 +36,6 @@ import javafx.util.*;
 
 public class EventController {
 
-	
-	class Wrapper {
-		private Ingredient i;
-		//private Coffee c;
-
-		private StringProperty name;
-		
-		public StringProperty getNameProperty() {
-			// TODO Auto-generated method stub
-			return name;
-		}
-	}
-	private IngredientHandler ingredienthandler;
-	
 	@FXML
 	private TableView<Ingredient> ingredientTable;
 	
@@ -58,19 +44,16 @@ public class EventController {
 	
 
 	@FXML
-	private TableView<Ingredient>  selectedTable;
+	private TableView<Ingredient>  selectedIngTable;
 	
 	@FXML
-	private TableColumn<Ingredient,String> selectedname;
+	private TableColumn<Ingredient,String> selectedingname;
 	
 	@FXML
-	private TableColumn<Ingredient,Integer >selectedprice; 
+	private TableColumn<Ingredient,Integer >selectedingprice; 
 	
 	@FXML
-	private TableColumn<Ingredient,Integer> changedprice;
-	
-	@FXML
-	private TableColumn<Ingredient,Boolean> ing_check;
+	private TableColumn<Ingredient,Integer> changedingprice;
 	
 	@FXML
 	private TextField percentage;
@@ -85,7 +68,7 @@ public class EventController {
 	ObservableList<String> temp_saleprice=FXCollections.observableArrayList();
 	//ObservableList<Ingredient> canceling_i=FXCollections.observableArrayList();
 	
-	Ingredient temp_ing=new Ingredient();
+	//Ingredient temp_ing=new Ingredient();
 	Ingredient canceling_i=new Ingredient();
 	
 	
@@ -163,55 +146,30 @@ public class EventController {
 		ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
 			selected_i=newValue;
 		});
-		selectedTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
+		selectedIngTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
 			canceling_i=newValue;
 		});
 		//selectedTable.setId(selected_is);
-		selectedTable.setItems(selected_is);
-		selectedname.setCellValueFactory(cellData->cellData.getValue().getNameProperty());
-		selectedprice.setCellValueFactory(cellData->cellData.getValue().getSaleProperty().asObject());
-		changedprice.setCellValueFactory(cellData->cellData.getValue().getPriceProperty().asObject());
+		selectedIngTable.setItems(selected_is);
+		selectedingname.setCellValueFactory(cellData->cellData.getValue().getNameProperty());
+		selectedingprice.setCellValueFactory(cellData->cellData.getValue().getSaleProperty().asObject());
+		changedingprice.setCellValueFactory(cellData->cellData.getValue().getPriceProperty().asObject());
 		
 	}
 	
-	private void itableinit() {
-		
-		ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		// showIngredientDetails(null);
-		ingredientTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		ingredientTable.getSelectionModel().setCellSelectionEnabled(true);
-		ingredientTable.setItems(IngredientHandler.getIngredients());
-		ingredientTable.getFocusModel().focusedCellProperty().addListener((obs, oldVal, newVal) -> {
-
-		    if(newVal.getTableColumn() != null){
-		        ingredientTable.getSelectionModel().selectRange(0, newVal.getTableColumn(), ingredientTable.getItems().size(), newVal.getTableColumn());
-		        System.out.println("Selected TableColumn: "+ newVal.getTableColumn().getText());
-		        System.out.println("Selected column index: "+ newVal.getColumn());
-		        
-		       // selectedTable.setItems((ObservableList<cafe.view.EventController.Wrapper>) newVal.getTableColumn());
-		    }
-		});
-		
-		
-
-	}
 	
 	@FXML
-	private void handle_sale() {
+	private void  handle_sale() {
 		int changedprice=0;
-		//for(int i=0;i<selected_i.size();i++) {
-			//temp_ing=selected_i.get(i); //percentage에 정수가 안들어오는 경우 체크해줘야됨
+			//percentage에 정수가 안들어오는 경우 체크해줘야됨
 			if(selected_i!=null) {
-			//temp_ing=selected_i;
-			changedprice=selected_i.getPrice()  * Integer.parseInt(percentage.getText())/ 100;
-			System.out.println(changedprice);
-			selected_i.setSalePrice((int)changedprice);//여기오류
-			//temp_ing.setSalePrice(changedprice);
-		//}
-			selected_is.add(selected_i);
-			System.out.println(selected_is);
-			tosale();
 			
+			changedprice-=selected_i.getPrice()  * Integer.parseInt(percentage.getText())/ 100;
+		
+			selected_i.setSalePrice((int)changedprice);//여기오류
+			selected_is.add(selected_i);
+			
+			tosale();
 		}
 	}
 	private void tosale() {
@@ -223,21 +181,8 @@ public class EventController {
 	
 	@FXML
 	private void cancel_sale() {
-		//목록에있는거 갖고와서 가격원래대로
-		
-		//for(int i=0;i<canceling_i.size();i++) {
-			//temp_ing=canceling_i.get(i);
-			//temp_ing=canceling_i;
-			//temp_ing.setPrice(temp_ing.getPrice());
-			//temp_ing.setSalePrice(0);
-		//}
-			//canceling_i.swap_price();
-			//canceling_i.setPrice(0);
-			System.out.println(canceling_i.getPrice()+" "+canceling_i.getSalePrice());
 			offsale();
-			System.out.println(canceling_i.getPrice()+" "+canceling_i.getSalePrice());
 			selected_is.remove(canceling_i);
-		
 	}
 	
 	
