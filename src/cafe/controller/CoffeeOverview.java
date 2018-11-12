@@ -7,22 +7,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
 import java.util.Iterator;
 
 public class CoffeeOverview {
 
-    @FXML
-    private TableView<Coffee> coffeeTable;
-    @FXML
-    private TableColumn<Coffee, String> coffeeName;
-    @FXML
-    private TableColumn<Coffee, Integer> coffeePrice;
-    @FXML
-    private Button newCoffee;
+
     @FXML
     private TableView<Coffee> selectedCoffeeTable;
     @FXML
@@ -31,6 +26,8 @@ public class CoffeeOverview {
     private TableColumn<Coffee, Integer> selectedCoffeePrice;
     @FXML
     private Label sum;
+    @FXML
+    private GridPane gridPane;
 
     private CoffeeHandler coffeeHandler;
 
@@ -38,36 +35,95 @@ public class CoffeeOverview {
 
     private ObservableList<Coffee> coffeeCart = FXCollections.observableArrayList();
 
+    private double columnSize = 0;
+    private double rowSize = 0;
 
     @FXML
     private void initialize() {
 
         //initialize cell datas
 
-        coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        coffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
+        this.columnSize = gridPane.getPrefWidth() / 5;
+        this.rowSize = gridPane.getPrefHeight() / 5;
+
+
+        // coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        // coffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
         selectedCoffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         selectedCoffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
         setCoffeeList();
-        addButtonToCoffeeTable();
+        setMenu();
+
         addButtonToSelectedCoffeeTable();
         addEditButtonToSelectedCoffeeTable();
 
 
     }
 
+    public void setCoffeeList() {
+        this.coffeeHandler = new CoffeeHandler();
+    }
+
     public void setMainApp(CoffeeHandler coffeeHandler, MainApp mainApp) {
         this.coffeeHandler = coffeeHandler;
         this.mainApp = mainApp;
         // 주석 UTF8로 다시 적어주세용
-        coffeeTable.setItems(coffeeHandler.getCoffees());
+        //coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
-    public void setCoffeeList() {
-        CoffeeHandler coffeeHandler = new CoffeeHandler();
-        this.coffeeTable.setItems(coffeeHandler.getCoffees());
+
+    public Button createButton(Coffee coffee) {
+        Button button = new Button(coffee.getName());
+        button.setPrefSize(this.columnSize, this.rowSize);
+        return button;
+    }
+
+    public Button createButton(String text) {
+        Button button = new Button(text);
+        button.setPrefSize(this.columnSize, this.rowSize);
+        return button;
+    }
+
+    public void setMenu() {
+        int count = 0;
+        ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
+        Iterator<Coffee> it = coffeeObservableList.iterator();
+        while (it.hasNext()) {
+            Button coffeeBtn = createButton(it.next());
+
+
+
+            coffeeBtn.setOnAction((ActionEvent evnet) -> {
+                Coffee clicked = findCoffeeOnList(coffeeBtn.getText());
+                handleMakeOrder(clicked);
+            });
+            gridPane.add(coffeeBtn, count % 5, count / 5);
+            gridPane.setMargin(coffeeBtn, new Insets(15, 15, 15, 15));
+            count++;
+        }
+        Button addBtn = createButton("+");
+        addBtn.setOnAction((ActionEvent event) -> {
+            handleNewCoffee();
+        });
+        gridPane.add(addBtn, count % 5, count / 5);
+        gridPane.setMargin(addBtn, new Insets(15, 15, 15, 15));
+
+
+    }
+
+    public Coffee findCoffeeOnList(String name) {
+        ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
+        Iterator<Coffee> it = coffeeObservableList.iterator();
+        while (it.hasNext()) {
+            Coffee current = it.next();
+            if (name.equals(current.getName())) {
+                return current;
+            }
+        }
+        System.out.println("There's no Such coffee of that name");
+        return null;
     }
 
     public void editCart(Coffee item, boolean add) {
@@ -100,6 +156,7 @@ public class CoffeeOverview {
         int okClicked = mainApp.showCoffeeEditDialog(temp, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
+            setMenu();
         }
     }
 
@@ -117,6 +174,7 @@ public class CoffeeOverview {
                 editCart(temp, true);
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
+                setMenu();
             }
         } else {
             Alert alert = new Alert(AlertType.WARNING);
@@ -143,6 +201,7 @@ public class CoffeeOverview {
                 calculateSum();
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
+                setMenu();
             }
         } else {
             Alert alert = new Alert(AlertType.WARNING);
@@ -163,37 +222,6 @@ public class CoffeeOverview {
         this.sum.setText(sum + " ₩");
     }
 
-    private void addButtonToCoffeeTable() {
-        TableColumn<Coffee, Void> colBtn = new TableColumn("");
-        Callback<TableColumn<Coffee, Void>, TableCell<Coffee, Void>> cellFactory = new Callback<>() {
-            @Override
-            public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
-                final TableCell<Coffee, Void> cell = new TableCell<>() {
-                    private final Button actionBtn = new Button("Add to Cart");
-
-                    {
-                        actionBtn.setOnAction((ActionEvent event) -> {
-                            Coffee clicked = getTableView().getItems().get(getIndex());
-                            handleMakeOrder(clicked);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(actionBtn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        colBtn.setCellFactory(cellFactory);
-        coffeeTable.getColumns().add(colBtn);
-    }
 
     private void addButtonToSelectedCoffeeTable() {
         TableColumn<Coffee, Void> colBtn = new TableColumn("");

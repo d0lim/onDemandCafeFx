@@ -1,10 +1,10 @@
 package cafe;
 
+import cafe.controller.CoffeeOverview;
 import cafe.controller.Receipt;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
 import cafe.controller.CoffeeEditController;
-import cafe.controller.CoffeeOverview;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
