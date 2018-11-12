@@ -16,7 +16,7 @@
           	</Tab>
           <Tab fx:id="CoffeeTab" onSelectionChanged="#initialize" text="Coffee">
              <content>
-             		<fx:include fx:id="CoffeeAnchorPane" source="CoffeeOverview.fxml" />
+             		<fx:include fx:id="CoffeeAnchorPane" source="ManagerCoffeeOverview.fxml" />
              </content>
           	</Tab>
           <Tab fx:id="EventTab" onSelectionChanged="#initialize" text="Event">
