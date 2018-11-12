@@ -1,4 +1,4 @@
-package cafe.view;
+package cafe.controller;
 
 import cafe.MainApp;
 import cafe.model.Ingredient;
@@ -91,7 +91,7 @@ public class EventController {
 		       // System.out.println("Selected column index: "+ newVal.getColumn());
 		        
 		        selected_i.getSelectionModel().getSelectedItems();
-		        selectedTable.setItems((ObservableList<cafe.view.EventController.Wrapper>) newVal.getTableColumn());
+		        selectedTable.setItems((ObservableList<cafe.controller.EventController.Wrapper>) newVal.getTableColumn());
 		    }
 		});*/
 		//TableColumn<Ingredient,Boolean>  checkCol = new TableColumn<>("Check");

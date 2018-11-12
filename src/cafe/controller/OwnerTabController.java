@@ -1,4 +1,4 @@
-package cafe.view;
+package cafe.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;

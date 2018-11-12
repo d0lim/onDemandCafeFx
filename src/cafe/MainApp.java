@@ -9,12 +9,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import cafe.view.IngredientEditController;
-import cafe.view.IngredientOverview;
-import cafe.view.OwnerTabController;
-import cafe.view.StartScreenController;
+import cafe.controller.IngredientEditController;
+import cafe.controller.OwnerTabController;
+import cafe.controller.StartScreenController;
 import cafe.model.Ingredient;
-import cafe.model.IngredientHandler;
 
 public class MainApp extends Application {
 

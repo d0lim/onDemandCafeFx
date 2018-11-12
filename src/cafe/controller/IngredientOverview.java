@@ -1,4 +1,4 @@
-package cafe.view;
+package cafe.controller;
 
 import cafe.MainApp;
 import cafe.model.Ingredient;
