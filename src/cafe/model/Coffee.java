@@ -1,0 +1,79 @@
+package cafe.model;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Coffee {
+
+    private StringProperty name;
+    private IntegerProperty price;
+    private ArrayList<Ingredient> ingreList = new ArrayList<>();
+
+    public Coffee() {
+        this(null, 0); // 주석 UTF8로 다시 적어주세용
+    }
+
+    public Coffee(String name, ArrayList<Ingredient> ingreList) {
+        this.name = new SimpleStringProperty(name);
+        this.ingreList = ingreList;
+        Iterator<Ingredient> it = this.ingreList.iterator();
+        int tmp = 0;
+        while (it.hasNext()) {
+            tmp += it.next().getPrice();
+        }
+        this.price = new SimpleIntegerProperty(tmp);
+    }
+
+    public Coffee(String name, int price) {
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleIntegerProperty(price);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public StringProperty getNameProperty() {
+        return name;
+    }
+
+    public void setName(String n) {
+        this.name.set(n);
+    }
+
+    public int getPrice() {
+        return price.get();
+    }
+
+    public IntegerProperty getPriceProperty() {
+        return price;
+    }
+
+    public void setPrice(int c) {
+        price.set(c);
+    }
+
+    public void setIngreList(ArrayList<Ingredient> ingreList) {
+        this.ingreList = ingreList;
+
+    }
+
+    public void calculatePrice() {
+        Iterator<Ingredient> it = this.ingreList.iterator();
+        int tmp = 0;
+        while (it.hasNext()) {
+            tmp += it.next().getPrice();
+        }
+        this.price = new SimpleIntegerProperty(tmp);
+    }
+
+    public ArrayList<Ingredient> getIngreList() {
+        return this.ingreList;
+    }
+
+}

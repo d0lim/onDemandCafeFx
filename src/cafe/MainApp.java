@@ -1,8 +1,12 @@
 package cafe;
 
-import java.io.IOException;
-
+import cafe.controller.CoffeeOverview;
+import cafe.controller.Receipt;
+import cafe.model.Coffee;
+import cafe.model.CoffeeHandler;
+import cafe.controller.CoffeeEditController;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +18,8 @@ import cafe.controller.OwnerTabController;
 import cafe.controller.StartScreenController;
 import cafe.model.Ingredient;
 
+import java.io.IOException;
+
 public class MainApp extends Application {
 
 	private Stage primaryStage;
@@ -24,6 +30,12 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("OOP Cafe");
+
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("OOP Cafe Coffee");
 
         initRootLayout();
 
@@ -60,7 +72,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-			// 주석 UTF8로 다시 적어주세용
+            // 주석 UTF8로 다시 적어주세용
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -77,6 +89,9 @@ public class MainApp extends Application {
 	            loader.setLocation(MainApp.class.getResource("view/IngredientOverview.fxml"));
 	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
 
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
+            AnchorPane IngredientOverview = (AnchorPane) loader.load();
 
 
 				// 주석 UTF8로 다시 적어주세용
@@ -124,10 +139,10 @@ public class MainApp extends Application {
 		        dialogStage.initModality(Modality.WINDOW_MODAL);
 		        //dialogStage.initOwner(primaryStage);
 
-		      
-		        Scene scene = new Scene(page);
-			 	dialogStage.setScene(scene);
-		       
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 			 	
 			 	
@@ -151,9 +166,6 @@ public class MainApp extends Application {
 		 }
 	 }
 
-	 public Stage getPrimaryStage() {
-	        return primaryStage;
-	    }
 
 	 public MainApp Mainapp() {
 		 return this;
