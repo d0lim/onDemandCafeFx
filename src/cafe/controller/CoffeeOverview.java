@@ -184,6 +184,8 @@ public class CoffeeOverview {
             int okClicked = mainApp.showCoffeeEditDialog(temp, true, false);
 
             if (okClicked == 1) {
+                if (!coffeeHandler.isDefault(temp))
+                    temp.setName(temp.getName() + " *");
                 editCart(temp, true);
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);

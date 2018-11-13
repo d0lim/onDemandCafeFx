@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class CoffeeHandler {
@@ -12,6 +13,7 @@ public class CoffeeHandler {
     static private boolean isFirst = true;
 
     public static ObservableList<Coffee> coffees = FXCollections.observableArrayList();
+    public static ObservableList<Coffee> defaultCoffees = FXCollections.observableArrayList();
 
     public ObservableList<Coffee> getCoffees() {
         if (isFirst) {
@@ -55,8 +57,18 @@ public class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Chocolate Syrup"));
 
         coffees.add(new Coffee("Cafe Mocha", tmpIngreList));
+        defaultCoffees.addAll(coffees);
 
     }
 
+    public static boolean isDefault(Coffee coffee) {
+        Iterator<Coffee> it = defaultCoffees.iterator();
+        while (it.hasNext()) {
+            Coffee current = it.next();
+            if (current.getName().equals(coffee.getName()) && current.getIngreList().equals(coffee.getIngreList()))
+                return true;
+        }
+        return false;
+    }
 
 }
