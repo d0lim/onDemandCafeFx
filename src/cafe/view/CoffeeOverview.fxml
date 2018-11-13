@@ -46,6 +46,9 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="257.0">
                <children>
                   <TableView fx:id="selectedCoffeeTable" layoutX="-45.0" layoutY="42.0" prefHeight="564.0" prefWidth="479.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                      <placeholder>
+                          <Label text="No Coffees are in the Cart!"></Label>
+                      </placeholder>
                     <columns>
                       <TableColumn fx:id="selectedCoffeeName" prefWidth="75.0" text="Coffees" />
                       <TableColumn fx:id="selectedCoffeePrice" prefWidth="75.0" text="Price" />
