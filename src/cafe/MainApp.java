@@ -184,7 +184,46 @@ public class MainApp extends Application {
         }
     }
 
+
     public static int showCoffeeEditDialog(Coffee coffee, boolean editMenu, boolean isManaging) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/CoffeeEditDialog.fxml"));
+            AnchorPane page = loader.load();
+
+
+            Stage dialogStage = new Stage();
+
+
+            dialogStage.setTitle("Edit Coffee");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(primaryStage);
+
+
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            CustomerCoffeeEdit controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setCoffee(coffee);
+            controller.setEditMode(editMenu);
+            controller.setIsManaging(isManaging);
+
+            dialogStage.showAndWait();
+
+
+            return controller.isOkClicked();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return 0;
+        }
+    }
+
+    public static int showCustomerCoffeeEditDialog(Coffee coffee, boolean editMenu, boolean isManaging) {
         try {
 
             FXMLLoader loader = new FXMLLoader();
