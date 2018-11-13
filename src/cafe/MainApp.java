@@ -234,7 +234,7 @@ public class MainApp extends Application {
             Stage dialogStage = new Stage();
 
 
-            dialogStage.setTitle("Edit Coffee");
+            dialogStage.setTitle("Configure Coffee");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             //dialogStage.initOwner(primaryStage);
 
