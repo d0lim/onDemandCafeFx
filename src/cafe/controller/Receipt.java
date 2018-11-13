@@ -36,7 +36,7 @@ public class Receipt {
 
         sum.setText("₩");
 
-        // need to initialize table view with all of ingredients
+        // need to initialize table view with all of ingredientObservableList
         receiptCoffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         receiptCoffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 

@@ -26,14 +26,11 @@ public class CoffeeHandler {
         ArrayList<Ingredient> tmpIngreList = new ArrayList<>();
 
         // make some Ingredient List
-        Ingredient espresso = new Ingredient("Espresso", 1000);
-        Ingredient milk = new Ingredient("Steamed Milk", 1000);
-        Ingredient water = new Ingredient("Water", 500);
-        Ingredient choco = new Ingredient("Chocolate Syrup", 1000);
+
 
         // Americano
-        tmpIngreList.add(espresso);
-        tmpIngreList.add(water);
+        tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Water"));
 
         coffees.add(new Coffee("Americano", tmpIngreList));
 
@@ -42,9 +39,9 @@ public class CoffeeHandler {
         tmpIngreList = new ArrayList<>();
 
         // Cafe Latte
-        tmpIngreList.add(espresso);
-        tmpIngreList.add(water);
-        tmpIngreList.add(milk);
+        tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Water"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Steamed Milk"));
 
         coffees.add(new Coffee("Cafe Latte", tmpIngreList));
 
@@ -52,10 +49,10 @@ public class CoffeeHandler {
         tmpIngreList = new ArrayList<>();
 
         // Cafe Mocha
-        tmpIngreList.add(espresso);
-        tmpIngreList.add(water);
-        tmpIngreList.add(milk);
-        tmpIngreList.add(choco);
+        tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Water"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Steamed Milk"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Chocolate Syrup"));
 
         coffees.add(new Coffee("Cafe Mocha", tmpIngreList));
 

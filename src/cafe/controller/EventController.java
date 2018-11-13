@@ -1,39 +1,15 @@
 package cafe.controller;
 
-import cafe.MainApp;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
 import cafe.model.Ingredient;
 import cafe.model.IngredientHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.shape.Box;
-import java.net.*;
-import java.util.*;
-
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.*;
-import javafx.collections.*;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.control.TableColumn.*;
-import javafx.scene.control.cell.*;
-import javafx.util.*;
 
 
 public class EventController {
@@ -84,7 +60,7 @@ public class EventController {
 	@FXML
 	private void initialize() {
 
-		ingredientTable.setItems(IngredientHandler.getIngredients());
+		ingredientTable.setItems(IngredientHandler.getIngredientObservableList());
 		ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
 			selected_i=newValue;

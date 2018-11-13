@@ -3,6 +3,7 @@ package cafe.controller;
 import cafe.MainApp;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
+import cafe.model.IngredientHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class CoffeeOverview {
 
         this.columnSize = gridPane.getPrefWidth() / 5;
         this.rowSize = gridPane.getPrefHeight() / 5;
+        IngredientHandler.initalizeIngredient();
 
 
         // coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());

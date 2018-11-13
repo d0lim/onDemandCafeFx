@@ -23,7 +23,7 @@ public class CoffeeEditController {
     @FXML
     private TableColumn<Ingredient, Integer> ingrePrice;
 
-    // if some ingredients are selected, we need to add those ingredients to Selected Table
+    // if some ingredientObservableList are selected, we need to add those ingredientObservableList to Selected Table
 
     @FXML
     private TableView<Ingredient> selectedTable;
@@ -50,7 +50,7 @@ public class CoffeeEditController {
         name.setText("");
         sum.setText("₩");
 
-        // need to initialize table view with all of ingredients
+        // need to initialize table view with all of ingredientObservableList
         ingreName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         ingrePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
@@ -67,7 +67,7 @@ public class CoffeeEditController {
 
     public void setIngreList() {
         IngredientHandler ingredientHandler = new IngredientHandler();
-        this.ingreTable.setItems(ingredientHandler.getIngredients());
+        this.ingreTable.setItems(ingredientHandler.getIngredientObservableList());
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -80,7 +80,7 @@ public class CoffeeEditController {
 
         name.setText(this.coffee.getName());
 
-        // need to add logic about setting ingredients
+        // need to add logic about setting ingredientObservableList
         this.selectedTable.setItems(FXCollections.observableArrayList(this.coffee.getIngreList()));
         this.sum.setText(this.coffee.getPrice() + " ₩");
     }
