@@ -32,14 +32,6 @@ class CoffeeHandler {
         return null;
     }
 
-    static boolean isSameName(String name) {
-        for (Coffee current : defaultCoffees) {
-            if (current.getName().equals(name))
-                return true;
-        }
-        return false;
-    }
-
     ObservableList<Coffee> getCoffees() {
         if (isFirst) {
             initializeCoffee();

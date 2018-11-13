@@ -64,7 +64,10 @@
                         <Font name="Apple SD Gothic Neo Heavy" size="45.0" />
                      </font></Label>
                   <Button fx:id="okBtn" defaultButton="true" layoutX="335.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="60.0" prefWidth="130.0" text="Add to Cart" />
-                  <TextField fx:id="name" layoutX="14.0" layoutY="15.0" prefHeight="60.0" prefWidth="450.0" />
+                  <TextField fx:id="name" layoutX="14.0" layoutY="15.0" prefHeight="60.0" prefWidth="450.0">
+                     <font>
+                        <Font name="Apple SD Gothic Neo Bold" size="30.0" />
+                     </font></TextField>
                   <Button layoutX="14.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="60.0" prefWidth="130.0" text="Cancel" />
                   <Button fx:id="saveBtn" layoutX="174.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="60.0" prefWidth="130.0" text="Save" />
                </children>
