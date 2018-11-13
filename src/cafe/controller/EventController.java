@@ -11,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.Iterator;
+
 
 public class EventController {
 
@@ -93,6 +95,13 @@ public class EventController {
 			selected_is.add(selected_i);
 			
 			tosale();
+			ObservableList<Coffee> coffeeList = this.coffeeHandler.getCoffees();
+			Iterator<Coffee> it = coffeeList.iterator();
+
+			while (it.hasNext()) {
+			    Coffee current = it.next();
+			    current.calculatePrice();
+            }
 		}
 	}
 

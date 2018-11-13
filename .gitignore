@@ -34,3 +34,7 @@ src/cafe/controller/NewCoffeeOverview\.java
 src/cafe/view/NewCoffeeOverview\.fxml
 
 *.plantuml
+
+src/cafe/controller/AddRemove\.java
+
+src/cafe/view/addRemove\.fxml
