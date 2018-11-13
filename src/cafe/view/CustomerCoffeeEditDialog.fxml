@@ -69,7 +69,7 @@
                         <Font name="Apple SD Gothic Neo Bold" size="30.0" />
                      </font></TextField>
                   <Button layoutX="14.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="60.0" prefWidth="130.0" text="Cancel" />
-                  <Button fx:id="saveBtn" layoutX="174.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="60.0" prefWidth="130.0" text="Save" />
+                  <Button fx:id="saveBtn" layoutX="174.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="60.0" prefWidth="130.0" text="Make New Menu" />
                </children>
             </AnchorPane>
         </items>

@@ -10,18 +10,19 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.controller.CoffeeOverview">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: deecfc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.controller.CoffeeOverview">
    <children>
-      <SplitPane dividerPositions="0.6220735785953178" layoutX="126.0" layoutY="136.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.6220735785953178" layoutX="126.0" layoutY="136.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: deecfc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="330.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="330.0" style="-fx-background-color: deecfc;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" layoutY="97.0" prefHeight="718.0" prefWidth="791.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                      <AnchorPane fx:id="scrollBoard" minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="773.0">
+                      <AnchorPane fx:id="scrollBoard" minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="773.0" style="-fx-background-color: #deecfc;">
                            <children>
-                              <GridPane fx:id="gridPane" prefHeight="718.0" prefWidth="774.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="0.0">
+                              <GridPane fx:id="gridPane" prefHeight="718.0" prefWidth="774.0" style="-fx-background-color: deecfc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,9 +44,9 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="491.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="491.0" style="-fx-background-color: deecfc;">
                <children>
-                  <TableView fx:id="selectedCoffeeTable" layoutX="-45.0" layoutY="42.0" prefHeight="564.0" prefWidth="479.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                  <TableView fx:id="selectedCoffeeTable" layoutX="-45.0" layoutY="42.0" prefHeight="564.0" prefWidth="479.0" style="-fx-background-color: deecfc;" stylesheets="@columnHeader.css" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
                       <placeholder>
                           <Label text="No Coffees are in the Cart!" />
                       </placeholder>
@@ -57,9 +58,12 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Label fx:id="sum" layoutX="63.0" layoutY="640.0" prefHeight="41.0" prefWidth="177.0" text="₩" />
-                  <Button fx:id="order" defaultButton="true" layoutX="274.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleReceiptButton" prefHeight="61.0" prefWidth="190.0" text="Order" />
-                  <Button layoutX="445.0" mnemonicParsing="false" onAction="#goback" prefHeight="41.0" prefWidth="34.0" style="-fx-background-color: #FFFFFF;" text="x" />
+                  <Label fx:id="sum" layoutX="21.0" layoutY="640.0" prefHeight="41.0" prefWidth="230.0" style="-fx-background-color: deecfc;" text="₩">
+                     <font>
+                        <Font name="Apple SD Gothic Neo Heavy" size="30.0" />
+                     </font></Label>
+                  <Button fx:id="order" defaultButton="true" layoutX="274.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleReceiptButton" prefHeight="61.0" prefWidth="190.0" style="-fx-background-color: b9ceeb;" text="Order" />
+                  <Button layoutX="444.0" mnemonicParsing="false" onAction="#goback" prefHeight="41.0" prefWidth="34.0" style="-fx-background-color: b9ceeb;" text="x" />
                </children>
             </AnchorPane>
         </items>

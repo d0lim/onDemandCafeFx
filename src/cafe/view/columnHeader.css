@@ -1,0 +1,14 @@
+.table-view .column-header-background,
+.table-view .column-header,
+.table-view .column-header .filter {
+    -fx-background-color: #87a8d0;
+}
+
+.table-view {
+    -fx-base: #deecfc;
+    -fx-control-inner-background: #deecfc;
+    -fx-background-color: #deecfc;
+    -fx-table-cell-border-color: white;
+    -fx-table-header-border-color: white;
+    -fx-padding: 5;
+}
