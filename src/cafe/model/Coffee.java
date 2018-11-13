@@ -12,6 +12,7 @@ public class Coffee {
 
     private StringProperty name;
     private IntegerProperty price;
+    private IntegerProperty saleprice;
     private ArrayList<Ingredient> ingreList = new ArrayList<>();
 
     public Coffee() {
@@ -75,5 +76,22 @@ public class Coffee {
     public ArrayList<Ingredient> getIngreList() {
         return this.ingreList;
     }
+
+    public void setSalePrice(int m) {
+		this.saleprice=new SimpleIntegerProperty(m);
+		
+	}
+	public IntegerProperty getSaleProperty() {
+		return saleprice;
+	}
+	public int getSalePrice() {
+		return saleprice.get();
+	}
+	public void swap_price() {
+		IntegerProperty temp;
+		temp=price;
+		price=saleprice;
+		saleprice=temp;
+	}
 
 }

@@ -58,6 +58,10 @@ public class ManagerCoffeeOverview {
      */
 
 
+    @FXML 
+    private void goback() {
+    	MainApp.start_program();
+    }
     @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
@@ -90,7 +94,7 @@ public class ManagerCoffeeOverview {
             //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
             alert.setTitle("No Selection");
             alert.setHeaderText("No Coffee Selected");
-            alert.setContentText("Please select an Coffee");
+            alert.setContentText("Please select a Coffee");
             alert.showAndWait();
         }
     }

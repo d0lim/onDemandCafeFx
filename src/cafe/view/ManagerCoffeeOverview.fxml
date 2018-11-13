@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.controller.ManagerCoffeeOverview">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cafe.controller.ManagerCoffeeOverview">
    <children>
-      <TableView fx:id="coffeeTable" prefHeight="606.0" prefWidth="791.0">
+      <TableView fx:id="coffeeTable" layoutX="14.0" layoutY="32.0" prefHeight="606.0" prefWidth="791.0">
          <columns>
             <TableColumn fx:id="coffeeName" prefWidth="562.0" text="Coffees" />
             <TableColumn fx:id="coffeePrice" prefWidth="227.0" text="Price" />
@@ -16,6 +19,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="newCoffee" layoutX="35.0" layoutY="639.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="61.0" prefWidth="739.0" text="Make New Menu" />
+      <Button fx:id="newCoffee" layoutX="825.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="88.0" prefWidth="411.0" text="Make New Menu" />
+      <Button layoutX="1169.0" layoutY="14.0" mnemonicParsing="false" onAction="#goback" prefHeight="35.0" prefWidth="90.0" text="Back" />
    </children>
 </AnchorPane>
