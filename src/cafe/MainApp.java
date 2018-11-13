@@ -192,7 +192,7 @@ public class MainApp extends Application {
 	            return false;
 	        }
 	    }
-	   public static int showCoffeeEditDialog(Coffee coffee, boolean editMenu) {
+	   public static int showCoffeeEditDialog(Coffee coffee, boolean editMenu, boolean isManaging) {
 	        try {
 
 	            FXMLLoader loader = new FXMLLoader();
@@ -215,6 +215,7 @@ public class MainApp extends Application {
 	            controller.setDialogStage(dialogStage);
 	            controller.setCoffee(coffee);
 	            controller.setEditMode(editMenu);
+	            controller.setIsManaging(isManaging);
 
 	            dialogStage.showAndWait();
 

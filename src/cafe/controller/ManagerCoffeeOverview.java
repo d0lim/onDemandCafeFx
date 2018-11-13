@@ -3,15 +3,11 @@ package cafe.controller;
 import cafe.MainApp;
 import cafe.model.Coffee;
 import cafe.model.CoffeeHandler;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
-
-import java.util.Iterator;
 
 public class ManagerCoffeeOverview {
 
@@ -65,7 +61,7 @@ public class ManagerCoffeeOverview {
     @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
-        int okClicked = mainApp.showCoffeeEditDialog(temp, false);
+        int okClicked = mainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
         }
@@ -80,7 +76,7 @@ public class ManagerCoffeeOverview {
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true);
+            int okClicked = mainApp.showCoffeeEditDialog(temp, true, true);
             if (okClicked == 1) {
                 clicked.setName(temp.getName());
                 clicked.setPrice(temp.getPrice());

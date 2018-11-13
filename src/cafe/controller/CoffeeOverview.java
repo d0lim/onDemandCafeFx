@@ -166,7 +166,7 @@ public class CoffeeOverview {
     @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
-        int okClicked = MainApp.showCoffeeEditDialog(temp, false);
+        int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
             setMenu();
@@ -181,7 +181,7 @@ public class CoffeeOverview {
             temp.setPrice(selected.getPrice());
             temp.getIngreList().addAll(selected.getIngreList());
 
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true);
+            int okClicked = mainApp.showCoffeeEditDialog(temp, true, false);
 
             if (okClicked == 1) {
                 editCart(temp, true);
@@ -205,7 +205,7 @@ public class CoffeeOverview {
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true);
+            int okClicked = mainApp.showCoffeeEditDialog(temp, true, true);
             if (okClicked == 1) {
                 clicked.setName(temp.getName());
                 clicked.setPrice(temp.getPrice());

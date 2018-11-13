@@ -101,6 +101,11 @@ public class CoffeeEditController {
             okBtn.setVisible(false);
     }
 
+    public void setIsManaging(boolean isManaging) {
+        if (isManaging)
+            okBtn.setText("Save");
+    }
+
     private void addButtonToIngreTable() {
         TableColumn<Ingredient, Void> colBtn = new TableColumn("");
         Callback<TableColumn<Ingredient, Void>, TableCell<Ingredient, Void>> cellFactory = new Callback<>() {
