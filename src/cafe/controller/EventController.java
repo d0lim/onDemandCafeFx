@@ -70,7 +70,11 @@ public class EventController {
 	
 	@FXML
 	private void initialize() {
-
+		manage_ingredient_events();
+		manage_coffee_events();
+	}
+	
+	private void manage_ingredient_events() {
 		ingredientTable.setItems(IngredientHandler.getIngredientObservableList());
 		ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		ingredientprice.setCellValueFactory(cellData->cellData.getValue().getPriceProperty().asObject());
@@ -80,11 +84,13 @@ public class EventController {
 		selectedIngTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->{
 			canceling_i=newValue;
 		});
-		//selectedTable.setId(selected_is);
+		
 		selectedIngTable.setItems(selected_is);
 		selectedingname.setCellValueFactory(cellData->cellData.getValue().getNameProperty());
 		changedingprice.setCellValueFactory(cellData->cellData.getValue().getPriceProperty().asObject());
 		
+	}
+	private void manage_coffee_events() {
 		coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		coffeeOriginalPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 		setCoffeeList();
@@ -99,7 +105,6 @@ public class EventController {
 		selectedCofTable.setItems(selected_cs);
 		selectedcofname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
 		changedcofprice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
-		
 		
 	}
 	

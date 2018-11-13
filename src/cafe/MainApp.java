@@ -11,13 +11,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import cafe.controller.CoffeeEditController;
-import cafe.controller.CoffeeOverview;
+
 import cafe.controller.IngredientEditController;
-import cafe.controller.OwnerTabController;
+
 import cafe.controller.Receipt;
-import cafe.controller.StartScreenController;
+
 import cafe.model.Coffee;
-import cafe.model.CoffeeHandler;
+
 import cafe.model.Ingredient;
 
 
@@ -47,7 +47,7 @@ public class MainApp extends Application {
          rootLayout.setCenter(start);
 		//첫화면띄우기
         
-		StartScreenController s=new StartScreenController();
+		//StartScreenController s=new StartScreenController();
 		//s.setScreen(this);
 		
 		rootLayout.requestFocus();
@@ -76,49 +76,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-	/* public static void showCoffeeOverview() {
-	        try {
-
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
-	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
-
-
-	            // 주석 UTF8로 다시 적어주세용
-	            rootLayout.setCenter(IngredientOverview);
-
-	            CoffeeHandler temp = new CoffeeHandler();
-	            CoffeeOverview controller = loader.getController();
-	            controller.setMainApp(temp, this);
-
-
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }*/
-/*
-	 public static void showIngredientOverview() {
-	        try {
-	            
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("view/IngredientOverview.fxml"));
-	            AnchorPane IngredientOverview = (AnchorPane) loader.load();
-
-
-
-				// 주석 UTF8로 다시 적어주세용
-	            rootLayout.setCenter(IngredientOverview);
-	            
-	            IngredientHandler temp=new IngredientHandler();
-	            IngredientOverview controller = loader.getController();
-	            controller.setMainApp(temp);
-	            
-	            
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }*/
-
+	
 	 public static void showOwnerTabs() {
 		 try {
 			 FXMLLoader loader = new FXMLLoader();
@@ -127,7 +85,7 @@ public class MainApp extends Application {
 	            
 	            rootLayout.setCenter(OwnerTab);
 	            
-	            OwnerTabController control=new OwnerTabController();
+	            //OwnerTabController control=new OwnerTabController();
 	           // control.setMainApp()
 	            
 		 }

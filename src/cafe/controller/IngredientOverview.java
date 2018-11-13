@@ -21,9 +21,6 @@ public class IngredientOverview {
 	@FXML
 	private Label price;
 	
-	private IngredientHandler o;
-	
-	private MainApp mainApp;
 	
 	@FXML 
 	private void goback() {
@@ -38,16 +35,9 @@ public class IngredientOverview {
 	        
 	        ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue)->showIngredientDetails(newValue));
 	        
-	        ingredientTable.setItems(o.getIngredientObservableList());
+	        ingredientTable.setItems(IngredientHandler.getIngredientObservableList());
 	    }
 
-	
-	public void setMainApp(IngredientHandler ih) {//,MainApp mainApp) {
-	        this.o = ih;
-	        //this.mainApp = mainApp;//와대박 
-		// 주석 UTF8로 다시 적어주세용
-	       // ingredientTable.setItems(o.getIngredientObservableList());
-	}
 	
 	private void showIngredientDetails(Ingredient i) {
 	
@@ -84,9 +74,9 @@ public class IngredientOverview {
 		
 		Ingredient temp=new Ingredient();
 		
-		boolean okClicked = mainApp.showIngredientEditDialog(temp);
+		boolean okClicked = MainApp.showIngredientEditDialog(temp);
 		if(okClicked) {
-			o.getIngredientObservableList().add(temp);
+			IngredientHandler.getIngredientObservableList().add(temp);
 		}
 		
 		
@@ -97,7 +87,7 @@ public class IngredientOverview {
 		Ingredient selected = ingredientTable.getSelectionModel().getSelectedItem();
 		if(selected!=null) {
 			
-			boolean okClicked=mainApp.showIngredientEditDialog(selected);
+			boolean okClicked=MainApp.showIngredientEditDialog(selected);
 			
 			if(okClicked) {
 				showIngredientDetails(selected);
