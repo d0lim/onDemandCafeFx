@@ -1,19 +1,18 @@
-package cafe.model;
+package cafe.controller;
 
 
+import cafe.model.Ingredient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.Iterator;
 
-
-public class IngredientHandler {
+class IngredientHandler {
 
     private static boolean isFirst = true;
 
     private static ObservableList<Ingredient> ingredientObservableList = FXCollections.observableArrayList();
 
-    public static ObservableList<Ingredient> getIngredientObservableList() {
+    static ObservableList<Ingredient> getIngredientObservableList() {
         if (isFirst) {
             initalizeIngredient();
             isFirst = false;
@@ -21,7 +20,7 @@ public class IngredientHandler {
         return ingredientObservableList;
     }
 
-    public static void initalizeIngredient() {
+    static void initalizeIngredient() {
         if (isFirst) {
             isFirst = false;
             ingredientObservableList.add(new Ingredient("Espresso", 2000));
@@ -31,10 +30,8 @@ public class IngredientHandler {
         }
     }
 
-    public static Ingredient findIngredint(String name) {
-        Iterator<Ingredient> it = ingredientObservableList.iterator();
-        while (it.hasNext()) {
-            Ingredient current = it.next();
+    static Ingredient findIngredint(String name) {
+        for (Ingredient current : ingredientObservableList) {
             //System.out.println(current.getName());
             if (current.getName().equals(name))
                 return current;

@@ -2,18 +2,12 @@ package cafe.controller;
 
 
 import cafe.model.Coffee;
-import cafe.model.Ingredient;
-import cafe.model.IngredientHandler;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
-import java.util.Iterator;
 
 public class Receipt {
 
@@ -41,8 +35,6 @@ public class Receipt {
         receiptCoffeePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
 
-
-
     }
 
 
@@ -57,12 +49,10 @@ public class Receipt {
     }
 
 
-
     private void calculateSum() {
         int sum = 0;
-        Iterator<Coffee> it = this.coffeeCart.iterator();
-        while (it.hasNext()) {
-            sum += it.next().getPrice();
+        for (Coffee aCoffeeCart : this.coffeeCart) {
+            sum += aCoffeeCart.getPrice();
         }
         this.sum.setText(sum + " ₩");
     }

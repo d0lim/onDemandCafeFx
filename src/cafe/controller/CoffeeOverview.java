@@ -2,8 +2,6 @@ package cafe.controller;
 
 import cafe.MainApp;
 import cafe.model.Coffee;
-import cafe.model.CoffeeHandler;
-import cafe.model.IngredientHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,42 +66,33 @@ public class CoffeeOverview {
 
     }
 
-    public void setCoffeeList() {
+    private void setCoffeeList() {
         this.coffeeHandler = new CoffeeHandler();
     }
 
-    public void setMainApp(CoffeeHandler coffeeHandler, MainApp mainApp) {
-        this.coffeeHandler = coffeeHandler;
-        this.mainApp = mainApp;
-        // 주석 UTF8로 다시 적어주세용
-        //coffeeTable.setItems(coffeeHandler.getCoffees());
-    }
-
-
-    public Button createButton(Coffee coffee) {
+    private Button createButton(Coffee coffee) {
         Button button = new Button(coffee.getName());
         button.setPrefSize(this.columnSize, this.rowSize);
         return button;
     }
 
-    public Button createButton(String text) {
+    private Button createButton(String text) {
         Button button = new Button(text);
         button.setPrefSize(this.columnSize, this.rowSize);
         return button;
     }
 
-    public void setMenu() {
+    private void setMenu() {
         int count = 0;
         ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
-        Iterator<Coffee> it = coffeeObservableList.iterator();
-        while (it.hasNext()) {
-            Button coffeeBtn = createButton(it.next());
+        for (Coffee aCoffeeObservableList : coffeeObservableList) {
+            Button coffeeBtn = createButton(aCoffeeObservableList);
             coffeeBtn.setOnAction((ActionEvent evnet) -> {
                 Coffee clicked = findCoffeeOnList(coffeeBtn.getText());
                 handleMakeOrder(clicked);
             });
             gridPane.add(coffeeBtn, count % 5, count / 5);
-            gridPane.setMargin(coffeeBtn, new Insets(15, 15, 15, 15));
+            GridPane.setMargin(coffeeBtn, new Insets(15, 15, 15, 15));
             count++;
         }
         Button addBtn = createButton("+");
@@ -116,16 +105,14 @@ public class CoffeeOverview {
             gridPane.addRow(1);
         }
         gridPane.add(addBtn, count % 5, count / 5);
-        gridPane.setMargin(addBtn, new Insets(15, 15, 15, 15));
+        GridPane.setMargin(addBtn, new Insets(15, 15, 15, 15));
 
 
     }
 
-    public Coffee findCoffeeOnList(String name) {
+    private Coffee findCoffeeOnList(String name) {
         ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
-        Iterator<Coffee> it = coffeeObservableList.iterator();
-        while (it.hasNext()) {
-            Coffee current = it.next();
+        for (Coffee current : coffeeObservableList) {
             if (name.equals(current.getName())) {
                 return current;
             }
@@ -134,7 +121,7 @@ public class CoffeeOverview {
         return null;
     }
 
-    public void editCart(Coffee item, boolean add) {
+    private void editCart(Coffee item, boolean add) {
         if (add)
             this.coffeeCart.add(item);
         else
@@ -148,11 +135,11 @@ public class CoffeeOverview {
      * if okClicked == 2 -> save as new menu
      */
 
-    @FXML 
-	private void goback() {
-		MainApp.start_program();
-	}
-    
+    @FXML
+    private void goback() {
+        MainApp.start_program();
+    }
+
     @FXML
     private void handleReceiptButton() {
         boolean btnClicked = MainApp.showReceipt(this.coffeeCart);
@@ -169,6 +156,7 @@ public class CoffeeOverview {
         int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
+            coffeeHandler.getDefaultCoffees().add(temp);
             setMenu();
         }
     }
@@ -181,14 +169,15 @@ public class CoffeeOverview {
             temp.setPrice(selected.getPrice());
             temp.getIngreList().addAll(selected.getIngreList());
 
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true, false);
+            int okClicked = MainApp.showCoffeeEditDialog(temp, true, false);
 
             if (okClicked == 1) {
-                if (!coffeeHandler.isDefault(temp))
+                if (!CoffeeHandler.isDefault(temp))
                     temp.setName(temp.getName() + " *");
                 editCart(temp, true);
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
+                coffeeHandler.getDefaultCoffees().add(temp);
                 setMenu();
             }
         } else {
@@ -207,7 +196,7 @@ public class CoffeeOverview {
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true, true);
+            int okClicked = MainApp.showCoffeeEditDialog(temp, true, true);
             if (okClicked == 1) {
                 clicked.setName(temp.getName());
                 clicked.setPrice(temp.getPrice());
@@ -216,6 +205,7 @@ public class CoffeeOverview {
                 calculateSum();
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
+                coffeeHandler.getDefaultCoffees().add(temp);
                 setMenu();
             }
         } else {

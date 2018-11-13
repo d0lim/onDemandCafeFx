@@ -3,7 +3,6 @@ package cafe.controller;
 
 import cafe.model.Coffee;
 import cafe.model.Ingredient;
-import cafe.model.IngredientHandler;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,8 +33,6 @@ public class CoffeeEditController {
     @FXML
     private Label sum;
     @FXML
-    private Button saveBtn;
-    @FXML
     private Button okBtn;
 
     private Stage dialogStage;
@@ -65,9 +62,8 @@ public class CoffeeEditController {
 
     }
 
-    public void setIngreList() {
-        IngredientHandler ingredientHandler = new IngredientHandler();
-        this.ingreTable.setItems(ingredientHandler.getIngredientObservableList());
+    private void setIngreList() {
+        this.ingreTable.setItems(IngredientHandler.getIngredientObservableList());
     }
 
     public void setDialogStage(Stage dialogStage) {

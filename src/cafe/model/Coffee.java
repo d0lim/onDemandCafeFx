@@ -59,11 +59,6 @@ public class Coffee {
         price.set(c);
     }
 
-    public void setIngreList(ArrayList<Ingredient> ingreList) {
-        this.ingreList = ingreList;
-
-    }
-
     public void calculatePrice() {
         Iterator<Ingredient> it = this.ingreList.iterator();
         int tmp = 0;
@@ -78,20 +73,19 @@ public class Coffee {
     }
 
     public void setSalePrice(int m) {
-		this.saleprice=new SimpleIntegerProperty(m);
-		
-	}
-	public IntegerProperty getSaleProperty() {
-		return saleprice;
-	}
-	public int getSalePrice() {
-		return saleprice.get();
-	}
-	public void swap_price() {
-		IntegerProperty temp;
-		temp=price;
-		price=saleprice;
-		saleprice=temp;
-	}
+        this.saleprice = new SimpleIntegerProperty(m);
+
+    }
+
+    public IntegerProperty getSaleProperty() {
+        return saleprice;
+    }
+
+    public void swap_price() {
+        IntegerProperty temp;
+        temp = price;
+        price = saleprice;
+        saleprice = temp;
+    }
 
 }

@@ -2,7 +2,6 @@ package cafe.controller;
 
 import cafe.MainApp;
 import cafe.model.Coffee;
-import cafe.model.CoffeeHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,11 +18,9 @@ public class ManagerCoffeeOverview {
     private TableColumn<Coffee, Integer> coffeePrice;
 
 
-
     private CoffeeHandler coffeeHandler;
 
     private MainApp mainApp;
-
 
 
     @FXML
@@ -42,8 +39,8 @@ public class ManagerCoffeeOverview {
     }
 
 
-    public void setCoffeeList() {
-        this.coffeeHandler =  new CoffeeHandler();
+    private void setCoffeeList() {
+        this.coffeeHandler = new CoffeeHandler();
         this.coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
@@ -54,14 +51,15 @@ public class ManagerCoffeeOverview {
      */
 
 
-    @FXML 
+    @FXML
     private void goback() {
-    	MainApp.start_program();
+        MainApp.start_program();
     }
+
     @FXML
     private void handleNewCoffee() {
         Coffee temp = new Coffee();
-        int okClicked = mainApp.showCoffeeEditDialog(temp, false, false);
+        int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
         }
@@ -76,7 +74,7 @@ public class ManagerCoffeeOverview {
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());
-            int okClicked = mainApp.showCoffeeEditDialog(temp, true, true);
+            int okClicked = MainApp.showCoffeeEditDialog(temp, true, true);
             if (okClicked == 1) {
                 clicked.setName(temp.getName());
                 clicked.setPrice(temp.getPrice());

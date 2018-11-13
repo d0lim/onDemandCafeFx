@@ -1,26 +1,39 @@
-package cafe.model;
+package cafe.controller;
 
 
+import cafe.model.Coffee;
+import cafe.model.Ingredient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
-public class CoffeeHandler {
+class CoffeeHandler {
 
     static private boolean isFirst = true;
 
-    public static ObservableList<Coffee> coffees = FXCollections.observableArrayList();
-    public static ObservableList<Coffee> defaultCoffees = FXCollections.observableArrayList();
+    private static ObservableList<Coffee> coffees = FXCollections.observableArrayList();
+    private static ObservableList<Coffee> defaultCoffees = FXCollections.observableArrayList();
 
-    public ObservableList<Coffee> getCoffees() {
+    static boolean isDefault(Coffee coffee) {
+        for (Coffee current : defaultCoffees) {
+            if (current.getName().equals(coffee.getName()) && current.getIngreList().equals(coffee.getIngreList()))
+                return true;
+        }
+        return false;
+    }
+
+    ObservableList<Coffee> getCoffees() {
         if (isFirst) {
             initializeCoffee();
             isFirst = false;
         }
         return coffees;
+    }
+
+    ObservableList<Coffee> getDefaultCoffees() {
+        return defaultCoffees;
     }
 
     private void initializeCoffee() {
@@ -59,16 +72,6 @@ public class CoffeeHandler {
         coffees.add(new Coffee("Cafe Mocha", tmpIngreList));
         defaultCoffees.addAll(coffees);
 
-    }
-
-    public static boolean isDefault(Coffee coffee) {
-        Iterator<Coffee> it = defaultCoffees.iterator();
-        while (it.hasNext()) {
-            Coffee current = it.next();
-            if (current.getName().equals(coffee.getName()) && current.getIngreList().equals(coffee.getIngreList()))
-                return true;
-        }
-        return false;
     }
 
 }
