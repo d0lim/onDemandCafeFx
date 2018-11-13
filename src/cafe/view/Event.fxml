@@ -43,9 +43,9 @@
                      </children>
                   </GridPane>
                   <TextField fx:id="percentage_ing" layoutX="92.0" layoutY="596.0" prefHeight="29.0" prefWidth="70.0" />
-                  <Button fx:id="cancelsale" layoutX="448.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_ing_sale" text="삭제" />
+                  <Button fx:id="cancelsale" layoutX="448.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_ing_sale" text="delete" />
                   <Label layoutX="330.0" layoutY="55.0" text="할인중" />
-                  <Button fx:id="onsale" layoutX="189.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_ingredient_sale" text="재료할인" />
+                  <Button fx:id="onsale" layoutX="189.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_ingredient_sale" text="Sale" />
                   <Button layoutX="1162.0" layoutY="14.0" mnemonicParsing="false" onAction="#goback" prefHeight="35.0" prefWidth="90.0" text="Back" />
                   <Label layoutX="50.0" layoutY="55.0" text="Ingredients" />
                   <Label layoutX="668.0" layoutY="55.0" text="Coffee" />
@@ -77,8 +77,8 @@
                   </GridPane>
                   <TextField fx:id="percentage_cof" layoutX="726.0" layoutY="596.0" prefHeight="29.0" prefWidth="63.0" />
                   <Label layoutX="796.0" layoutY="601.0" text="\%" />
-                  <Button layoutX="822.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_coffee_sale" text="커피할인" />
-                  <Button layoutX="1071.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_cof_sale" text="삭제" />
+                  <Button layoutX="822.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_coffee_sale" text="Sale" />
+                  <Button layoutX="1071.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_cof_sale" text="delete" />
                   <Label layoutX="952.0" layoutY="57.0" text="할인중" />
                </children>
             </AnchorPane>

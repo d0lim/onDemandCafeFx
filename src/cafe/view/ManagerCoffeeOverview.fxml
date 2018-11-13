@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -19,7 +20,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="newCoffee" layoutX="825.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="88.0" prefWidth="411.0" text="Make New Menu" />
+      <Button fx:id="newCoffee" layoutX="825.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleNewCoffee" prefHeight="88.0" prefWidth="411.0" text="Make New Menu">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
       <Button layoutX="1169.0" layoutY="14.0" mnemonicParsing="false" onAction="#goback" prefHeight="35.0" prefWidth="90.0" text="Back" />
    </children>
 </AnchorPane>
