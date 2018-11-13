@@ -34,6 +34,7 @@ public class ManagerCoffeeOverview {
 
         setCoffeeList();
         addButtonToCoffeeTable();
+        removeButtonToCoffeeTable();
 
 
     }
@@ -68,6 +69,19 @@ public class ManagerCoffeeOverview {
 
     // Event of order button from callback function
 
+    private void handleRemove(Coffee clicked) {
+        if (clicked != null) {
+            coffeeHandler.getCoffees().remove(clicked);
+            coffeeHandler.getDefaultCoffees().remove(clicked);
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Coffee Selected");
+            alert.setContentText("Please select a Coffee");
+            alert.showAndWait();
+        }
+    }
 
     private void handleEdit(Coffee clicked) {
         if (clicked != null) {
@@ -108,6 +122,38 @@ public class ManagerCoffeeOverview {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
                             handleEdit(clicked);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(actionBtn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        colBtn.setCellFactory(cellFactory);
+        coffeeTable.getColumns().add(colBtn);
+    }
+
+    private void removeButtonToCoffeeTable() {
+        TableColumn<Coffee, Void> colBtn = new TableColumn("");
+        Callback<TableColumn<Coffee, Void>, TableCell<Coffee, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
+                final TableCell<Coffee, Void> cell = new TableCell<>() {
+                    private final Button actionBtn = new Button("Remove");
+
+                    {
+                        actionBtn.setOnAction((ActionEvent event) -> {
+                            Coffee clicked = getTableView().getItems().get(getIndex());
+                            handleRemove(clicked);
                         });
                     }
 

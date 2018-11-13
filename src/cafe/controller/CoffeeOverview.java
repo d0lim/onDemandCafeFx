@@ -234,7 +234,7 @@ public class CoffeeOverview {
             @Override
             public TableCell<Coffee, Void> call(final TableColumn<Coffee, Void> param) {
                 final TableCell<Coffee, Void> cell = new TableCell<>() {
-                    private final Button actionBtn = new Button("Remove from Cart");
+                    private final Button actionBtn = new Button("Remove");
 
                     {
                         actionBtn.setOnAction((ActionEvent event) -> {
