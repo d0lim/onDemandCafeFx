@@ -73,7 +73,7 @@ public class CoffeeOverview {
         Button button = new Button(coffee.getName());
         button.setPrefSize(this.columnSize, this.rowSize);
         if (isSpecial) {
-            button.setStyle("-fx-border-color: #ff6a14");
+            button.setStyle("-fx-border-color: #ff6a14; -fx-border-width: 3px;");
         }
         return button;
     }
@@ -82,7 +82,7 @@ public class CoffeeOverview {
         Button button = new Button(text);
         button.setPrefSize(this.columnSize, this.rowSize);
         if (isSpecial) {
-            button.setStyle("-fx-border-color: #ff6a14");
+            button.setStyle("-fx-border-color: #ff6a14; -fx-border-width: 3px");
         }
         return button;
     }

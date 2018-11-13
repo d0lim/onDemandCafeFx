@@ -1,6 +1,7 @@
 package cafe;
 
 import cafe.controller.CoffeeEditController;
+import cafe.controller.CustomerCoffeeEdit;
 import cafe.controller.IngredientEditController;
 import cafe.controller.Receipt;
 import cafe.model.Coffee;
@@ -187,7 +188,7 @@ public class MainApp extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/CoffeeEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/CustomerCoffeeEditDialog.fxml"));
             AnchorPane page = loader.load();
 
 
@@ -202,7 +203,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            CoffeeEditController controller = loader.getController();
+            CustomerCoffeeEdit controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setCoffee(coffee);
             controller.setEditMode(editMenu);
