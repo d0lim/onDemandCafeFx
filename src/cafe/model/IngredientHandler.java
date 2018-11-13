@@ -22,13 +22,13 @@ public class IngredientHandler {
     }
 
     public static void initalizeIngredient() {
-        isFirst = false;
-
-        ingredientObservableList.add(new Ingredient("Espresso", 2000));
-        ingredientObservableList.add(new Ingredient("Steamed Milk", 1000));
-        ingredientObservableList.add(new Ingredient("Water", 3000));
-        ingredientObservableList.add(new Ingredient("Chocolate Syrup", 5000));
-
+        if (isFirst) {
+            isFirst = false;
+            ingredientObservableList.add(new Ingredient("Espresso", 2000));
+            ingredientObservableList.add(new Ingredient("Steamed Milk", 1000));
+            ingredientObservableList.add(new Ingredient("Water", 3000));
+            ingredientObservableList.add(new Ingredient("Chocolate Syrup", 5000));
+        }
     }
 
     public static Ingredient findIngredint(String name) {

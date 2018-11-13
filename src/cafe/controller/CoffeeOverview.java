@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
@@ -29,6 +30,8 @@ public class CoffeeOverview {
     private Label sum;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private AnchorPane scrollBoard;
 
     private CoffeeHandler coffeeHandler;
 
@@ -38,6 +41,7 @@ public class CoffeeOverview {
 
     private double columnSize = 0;
     private double rowSize = 0;
+    private int numOfRow = 5;
 
     @FXML
     private void initialize() {
@@ -94,9 +98,6 @@ public class CoffeeOverview {
         Iterator<Coffee> it = coffeeObservableList.iterator();
         while (it.hasNext()) {
             Button coffeeBtn = createButton(it.next());
-
-
-
             coffeeBtn.setOnAction((ActionEvent evnet) -> {
                 Coffee clicked = findCoffeeOnList(coffeeBtn.getText());
                 handleMakeOrder(clicked);
@@ -109,6 +110,11 @@ public class CoffeeOverview {
         addBtn.setOnAction((ActionEvent event) -> {
             handleNewCoffee();
         });
+        if (count >= numOfRow * 5) {
+            scrollBoard.setPrefHeight(scrollBoard.getHeight() + rowSize);
+            gridPane.setPrefHeight(scrollBoard.getHeight());
+            gridPane.addRow(1);
+        }
         gridPane.add(addBtn, count % 5, count / 5);
         gridPane.setMargin(addBtn, new Insets(15, 15, 15, 15));
 
