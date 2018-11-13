@@ -14,6 +14,7 @@ public class Coffee {
     private IntegerProperty price;
     private IntegerProperty saleprice;
     private ArrayList<Ingredient> ingreList = new ArrayList<>();
+    private Boolean isSpecial = false;
 
     public Coffee() {
         this(null, 0); // 주석 UTF8로 다시 적어주세용
@@ -33,6 +34,14 @@ public class Coffee {
     public Coffee(String name, int price) {
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleIntegerProperty(price);
+    }
+
+    public void setIsSpecial(Boolean isSpecial) {
+        this.isSpecial = isSpecial;
+    }
+
+    public Boolean getIsSpecial() {
+        return this.isSpecial;
     }
 
     public String getName() {

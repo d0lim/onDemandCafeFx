@@ -24,6 +24,14 @@ class CoffeeHandler {
         return false;
     }
 
+    static Coffee getSameIngredients(Coffee coffee) {
+        for (Coffee current : defaultCoffees) {
+            if (coffee.getIngreList().containsAll(current.getIngreList()) && current.getIngreList().containsAll(coffee.getIngreList()))
+                return current;
+        }
+        return null;
+    }
+
     ObservableList<Coffee> getCoffees() {
         if (isFirst) {
             initializeCoffee();

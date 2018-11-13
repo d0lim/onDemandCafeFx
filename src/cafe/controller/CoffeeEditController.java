@@ -89,6 +89,11 @@ public class CoffeeEditController {
             this.coffee.getIngreList().remove(clicked);
         this.coffee.calculatePrice();
         this.selectedTable.setItems(FXCollections.observableArrayList(this.coffee.getIngreList()));
+        Coffee recommended = CoffeeHandler.getSameIngredients(this.coffee);
+        if (recommended != null)
+            name.setPromptText(recommended.getName());
+        else
+            name.setPromptText("");
         this.sum.setText(this.coffee.getPrice() + " ₩");
     }
 

@@ -63,30 +63,35 @@ public class CoffeeOverview {
         addButtonToSelectedCoffeeTable();
         addEditButtonToSelectedCoffeeTable();
 
-
     }
 
     private void setCoffeeList() {
         this.coffeeHandler = new CoffeeHandler();
     }
 
-    private Button createButton(Coffee coffee) {
+    private Button createButton(Coffee coffee, Boolean isSpecial) {
         Button button = new Button(coffee.getName());
         button.setPrefSize(this.columnSize, this.rowSize);
+        if (isSpecial) {
+            button.setStyle("-fx-border-color: #ff6a14");
+        }
         return button;
     }
 
-    private Button createButton(String text) {
+    private Button createButton(String text, Boolean isSpecial) {
         Button button = new Button(text);
         button.setPrefSize(this.columnSize, this.rowSize);
+        if (isSpecial) {
+            button.setStyle("-fx-border-color: #ff6a14");
+        }
         return button;
     }
 
     private void setMenu() {
         int count = 0;
         ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
-        for (Coffee aCoffeeObservableList : coffeeObservableList) {
-            Button coffeeBtn = createButton(aCoffeeObservableList);
+        for (Coffee coffee : coffeeObservableList) {
+            Button coffeeBtn = createButton(coffee, coffee.getIsSpecial());
             coffeeBtn.setOnAction((ActionEvent evnet) -> {
                 Coffee clicked = findCoffeeOnList(coffeeBtn.getText());
                 handleMakeOrder(clicked);
@@ -95,7 +100,7 @@ public class CoffeeOverview {
             GridPane.setMargin(coffeeBtn, new Insets(15, 15, 15, 15));
             count++;
         }
-        Button addBtn = createButton("+");
+        Button addBtn = createButton("+", true);
         addBtn.setOnAction((ActionEvent event) -> {
             handleNewCoffee();
         });
@@ -106,8 +111,6 @@ public class CoffeeOverview {
         }
         gridPane.add(addBtn, count % 5, count / 5);
         GridPane.setMargin(addBtn, new Insets(15, 15, 15, 15));
-
-
     }
 
     private Coffee findCoffeeOnList(String name) {
@@ -155,6 +158,7 @@ public class CoffeeOverview {
         Coffee temp = new Coffee();
         int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
+            temp.setIsSpecial(true);
             coffeeHandler.getCoffees().add(temp);
             coffeeHandler.getDefaultCoffees().add(temp);
             setMenu();
@@ -176,6 +180,7 @@ public class CoffeeOverview {
                     temp.setName(temp.getName() + " *");
                 editCart(temp, true);
             } else if (okClicked == 2) {
+                temp.setIsSpecial(true);
                 coffeeHandler.getCoffees().add(temp);
                 coffeeHandler.getDefaultCoffees().add(temp);
                 setMenu();
@@ -204,6 +209,7 @@ public class CoffeeOverview {
                 clicked.getIngreList().addAll(temp.getIngreList());
                 calculateSum();
             } else if (okClicked == 2) {
+                temp.setIsSpecial(true);
                 coffeeHandler.getCoffees().add(temp);
                 coffeeHandler.getDefaultCoffees().add(temp);
                 setMenu();
