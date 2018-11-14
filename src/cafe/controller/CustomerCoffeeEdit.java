@@ -48,6 +48,9 @@ public class CustomerCoffeeEdit {
     private double rowSize = 0;
     private int numOfRow = 5;
 
+    private String btnDefault = "-fx-background-color: #c9d6df; ";
+    private String btnEntered = "-fx-background-color: #ffff73; ";
+
     @FXML
     private void initialize() {
 
@@ -90,13 +93,13 @@ public class CustomerCoffeeEdit {
     private Button createButton(Ingredient ingredient) {
         Button button = new Button(ingredient.getName());
         button.setPrefSize(this.columnSize, this.rowSize);
-        button.setStyle("-fx-background-color: white");
+        button.setStyle(btnDefault);
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle("-fx-background-color: #ffff73");
+            button.setStyle(btnEntered);
             button.setText("+");
         });
         button.setOnMouseExited(ActionEvent -> {
-            button.setStyle("-fx-background-color: white");
+            button.setStyle(btnDefault);
             button.setText(ingredient.getName());
         });
         return button;

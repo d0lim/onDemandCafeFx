@@ -47,7 +47,7 @@ public class CoffeeOverview {
 
     private String btnDefault = "-fx-background-color: #c9d6df; ";
     private String btnEntered = "-fx-background-color: #52616b; ";
-    private String btnSpecial = "-fx-border-color: #fa7e84; -fx-border-width: 3px; -fx-border-radius: 1px";
+    private String btnSpecial = "-fx-border-color: #fa7e84; -fx-border-width: 3px; -fx-border-radius: 1px; ";
 
     @FXML
     private void initialize() {
@@ -88,7 +88,7 @@ public class CoffeeOverview {
             button.setStyle(btnDefault + btnSpecial);
         }
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle(btnEntered + "-fx-text-fill: white");
+            button.setStyle(btnEntered + "-fx-text-fill: white; ");
             button.setText("Click to\n" +"See Detail");
             button.setTextAlignment(TextAlignment.CENTER);
             if (isSpecial) {
@@ -113,7 +113,7 @@ public class CoffeeOverview {
         button.setPrefSize(this.columnSize, this.rowSize);
         button.setStyle(btnDefault + btnSpecial);
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle(btnEntered + btnSpecial);
+            button.setStyle(btnEntered + btnSpecial + "-fx-text-fill: white; ");
         });
         button.setOnMouseExited(ActionEvent -> {
             button.setStyle(btnDefault + btnSpecial);
@@ -176,12 +176,22 @@ public class CoffeeOverview {
 
     @FXML
     private void handleReceiptButton() {
-        boolean btnClicked = MainApp.showReceipt(this.coffeeCart);
-        if (btnClicked) {
-            coffeeCart = null;
-            coffeeCart = FXCollections.observableArrayList();
-            selectedCoffeeTable.getItems().clear();
+        if (!this.selectedCoffeeTable.getItems().isEmpty()) {
+            boolean btnClicked = MainApp.showReceipt(this.coffeeCart);
+            if (btnClicked) {
+                coffeeCart = null;
+                coffeeCart = FXCollections.observableArrayList();
+                selectedCoffeeTable.getItems().clear();
+            }
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
+            alert.setTitle("No Coffees Selected");
+            alert.setHeaderText("No Coffees are in the Cart!");
+            alert.setContentText("Please add some coffees to the Cart!");
+            alert.showAndWait();
         }
+
     }
 
     @FXML
