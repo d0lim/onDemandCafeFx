@@ -44,9 +44,9 @@ public class CoffeeOverview {
     private double rowSize = 0;
     private int numOfRow = 5;
 
-    private String btnDefault = "-fx-background-color: #b9ceeb; ";
-    private String btnEntered = "-fx-background-color: #87a8d0; ";
-    private String btnSpecial = "-fx-border-color: #ffc145; -fx-border-width: 3px; ";
+    private String btnDefault = "-fx-background-color: #fcbad3; ";
+    private String btnEntered = "-fx-background-color: #aa96da; ";
+    private String btnSpecial = "-fx-border-color: #a8d8ea; -fx-border-width: 3px; ";
 
     @FXML
     private void initialize() {

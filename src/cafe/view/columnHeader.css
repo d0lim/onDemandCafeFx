@@ -1,13 +1,13 @@
 .table-view .column-header-background,
 .table-view .column-header,
 .table-view .column-header .filter {
-    -fx-background-color: #87a8d0;
+    -fx-background-color: #aa96da;
 }
 
 .table-view {
-    -fx-base: #deecfc;
-    -fx-control-inner-background: #deecfc;
-    -fx-background-color: #deecfc;
+    -fx-base: #ffffd2;
+    -fx-control-inner-background: #ffffd2;
+    -fx-background-color: #ffffd2;
     -fx-table-cell-border-color: white;
     -fx-table-header-border-color: white;
     -fx-padding: 5;
