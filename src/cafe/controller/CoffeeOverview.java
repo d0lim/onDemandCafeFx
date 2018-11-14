@@ -89,7 +89,7 @@ public class CoffeeOverview {
         }
         button.setOnMouseEntered(ActionEvent -> {
             button.setStyle(btnEntered + "-fx-text-fill: white");
-            button.setText(coffee.getName() + "\n₩ " + String.valueOf(coffee.getPrice()));
+            button.setText("Click to\n" +"See Detail");
             button.setTextAlignment(TextAlignment.CENTER);
             if (isSpecial) {
                 button.setStyle(btnEntered + btnSpecial);
