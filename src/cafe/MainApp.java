@@ -204,7 +204,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            CustomerCoffeeEdit controller = loader.getController();
+            CoffeeEditController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setCoffee(coffee);
             controller.setEditMode(editMenu);
