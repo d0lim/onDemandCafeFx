@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
 import javax.swing.*;
@@ -44,9 +45,9 @@ public class CoffeeOverview {
     private double rowSize = 0;
     private int numOfRow = 5;
 
-    private String btnDefault = "-fx-background-color: #fcbad3; ";
-    private String btnEntered = "-fx-background-color: #aa96da; ";
-    private String btnSpecial = "-fx-border-color: #a8d8ea; -fx-border-width: 3px; ";
+    private String btnDefault = "-fx-background-color: #c9d6df; ";
+    private String btnEntered = "-fx-background-color: #52616b; ";
+    private String btnSpecial = "-fx-border-color: #fa7e84; -fx-border-width: 3px; -fx-border-radius: 1px";
 
     @FXML
     private void initialize() {
@@ -87,16 +88,22 @@ public class CoffeeOverview {
             button.setStyle(btnDefault + btnSpecial);
         }
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle(btnEntered);
+            button.setStyle(btnEntered + "-fx-text-fill: white");
+            button.setText(coffee.getName() + "\n₩ " + String.valueOf(coffee.getPrice()));
+            button.setTextAlignment(TextAlignment.CENTER);
             if (isSpecial) {
-                button.setStyle(btnSpecial + btnEntered);
+                button.setStyle(btnEntered + btnSpecial);
             }
         });
         button.setOnMouseExited(ActionEvent -> {
             button.setStyle(btnDefault);
+            button.setText(coffee.getName());
             if (isSpecial) {
                 button.setStyle(btnDefault + btnSpecial);
             }
+        });
+        button.setOnAction((ActionEvent evnet) -> {
+            handleMakeOrder(coffee);
         });
         return button;
     }
@@ -119,10 +126,7 @@ public class CoffeeOverview {
         ObservableList<Coffee> coffeeObservableList = coffeeHandler.getCoffees();
         for (Coffee coffee : coffeeObservableList) {
             Button coffeeBtn = createButton(coffee, coffee.getIsSpecial());
-            coffeeBtn.setOnAction((ActionEvent evnet) -> {
-                Coffee clicked = findCoffeeOnList(coffeeBtn.getText());
-                handleMakeOrder(clicked);
-            });
+
             gridPane.add(coffeeBtn, count % 5, count / 5);
             GridPane.setMargin(coffeeBtn, new Insets(15, 15, 15, 15));
             count++;
@@ -270,12 +274,12 @@ public class CoffeeOverview {
                     private final Button actionBtn = new Button("Remove");
 
                     {
-                        actionBtn.setStyle("-fx-background-color: #b9ceeb");
+                        actionBtn.setStyle(btnDefault);
                         actionBtn.setOnMouseEntered(ActionEvent -> {
-                            actionBtn.setStyle("-fx-background-color: #87a8d0");
+                            actionBtn.setStyle(btnEntered);
                         });
                         actionBtn.setOnMouseExited(ActionEvent -> {
-                            actionBtn.setStyle("-fx-background-color: #b9ceeb");
+                            actionBtn.setStyle(btnDefault);
                         });
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
@@ -310,12 +314,12 @@ public class CoffeeOverview {
                     private final Button actionBtn = new Button("Edit");
 
                     {
-                        actionBtn.setStyle("-fx-background-color: #b9ceeb");
+                        actionBtn.setStyle(btnDefault);
                         actionBtn.setOnMouseEntered(ActionEvent -> {
-                            actionBtn.setStyle("-fx-background-color: #87a8d0");
+                            actionBtn.setStyle(btnEntered);
                         });
                         actionBtn.setOnMouseExited(ActionEvent -> {
-                            actionBtn.setStyle("-fx-background-color: #b9ceeb");
+                            actionBtn.setStyle(btnDefault);
                         });
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Coffee clicked = getTableView().getItems().get(getIndex());
