@@ -44,6 +44,10 @@ public class CoffeeOverview {
     private double rowSize = 0;
     private int numOfRow = 5;
 
+    private String btnDefault = "-fx-background-color: #b9ceeb; ";
+    private String btnEntered = "-fx-background-color: #87a8d0; ";
+    private String btnSpecial = "-fx-border-color: #ffc145; -fx-border-width: 3px; ";
+
     @FXML
     private void initialize() {
         //initialize cell datas
@@ -51,10 +55,10 @@ public class CoffeeOverview {
         this.rowSize = gridPane.getPrefHeight() / 5;
         IngredientHandler.initalizeIngredient();
         order.setOnMouseEntered(ActionEvent -> {
-            order.setStyle("-fx-background-color: #87a8d0");
+            order.setStyle(btnEntered);
         });
         order.setOnMouseExited(ActionEvent -> {
-            order.setStyle("-fx-background-color: #b9ceeb");
+            order.setStyle(btnDefault);
         });
 
         // coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
@@ -78,34 +82,34 @@ public class CoffeeOverview {
     private Button createButton(Coffee coffee, Boolean isSpecial) {
         Button button = new Button(coffee.getName());
         button.setPrefSize(this.columnSize, this.rowSize);
-        button.setStyle("-fx-background-color: #b9ceeb;");
+        button.setStyle(btnDefault);
+        if (isSpecial) {
+            button.setStyle(btnDefault + btnSpecial);
+        }
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle("-fx-background-color: #87a8d0");
+            button.setStyle(btnEntered);
             if (isSpecial) {
-                button.setStyle("-fx-border-color: #ffc145; -fx-border-width: 3px; -fx-background-color: #b9ceeb;");
+                button.setStyle(btnSpecial + btnEntered);
             }
         });
         button.setOnMouseExited(ActionEvent -> {
-            button.setStyle("-fx-background-color: #b9ceeb");
+            button.setStyle(btnDefault);
             if (isSpecial) {
-                button.setStyle("-fx-border-color: #ffc145; -fx-border-width: 3px; -fx-background-color: #87a8d0;");
+                button.setStyle(btnDefault + btnSpecial);
             }
         });
-        if (isSpecial) {
-            button.setStyle("-fx-border-color: #ffc145; -fx-border-width: 3px; -fx-background-color: #b9ceeb;");
-        }
         return button;
     }
 
     private Button createButton(String text, Boolean isSpecial) {
         Button button = new Button(text);
         button.setPrefSize(this.columnSize, this.rowSize);
-        button.setStyle("-fx-background-color: #b9ceeb; -fx-border-color: #FFC145; -fx-border-width: 3px");
+        button.setStyle(btnDefault + btnSpecial);
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle("-fx-background-color: #87a8d0; -fx-border-color: #FFC145; -fx-border-width: 3px");
+            button.setStyle(btnEntered + btnSpecial);
         });
         button.setOnMouseExited(ActionEvent -> {
-            button.setStyle("-fx-background-color: #b9ceeb; -fx-border-color: #FFC145; -fx-border-width: 3px");
+            button.setStyle(btnDefault + btnSpecial);
         });
         return button;
     }
