@@ -183,13 +183,18 @@ public class EventController {
 
     private void ingSaleOn() {
         selectedIngredient.swap_price();
-        selectedIngredient.setName(selectedIngredient.getName()+"(On Sale)");
+        
+        selectedIngredient.setName(selectedIngredient.getName()+"("+ingredientPercent.getText() +"% Sale)");
         
     }
 
     private void ingSaleOff() {
         cancelingIngredient.swap_price();
-        cancelingIngredient.setName(cancelingIngredient.getName().replace("(On Sale)", ""));
+		int startIndex = cancelingIngredient.getName().indexOf("(");
+        int endIndex = cancelingIngredient.getName().indexOf(")");
+        String replacement = "";
+        String toBeReplaced = cancelingIngredient.getName().substring(startIndex + 1, endIndex);
+        cancelingIngredient.setName(cancelingIngredient.getName().replace(toBeReplaced, replacement));
     }
 
     private void cofSaleOn() {
@@ -199,7 +204,11 @@ public class EventController {
 
     private void cofSaleOff() {
         cancelingCoffee.swap_price();
-        cancelingCoffee.setName(cancelingCoffee.getName().replace("(On Sale)", ""));
+        int startIndex = cancelingCoffee.getName().indexOf("(");
+        int endIndex = cancelingCoffee.getName().indexOf(")");
+        String replacement = "";
+        String toBeReplaced = cancelingCoffee.getName().substring(startIndex + 1, endIndex);
+        cancelingCoffee.setName(cancelingCoffee.getName().replace(toBeReplaced, replacement));
     }
 
     @FXML
