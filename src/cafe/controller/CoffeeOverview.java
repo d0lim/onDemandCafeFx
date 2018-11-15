@@ -203,7 +203,6 @@ public class CoffeeOverview {
         if (okClicked == 2) {
             temp.setIsSpecial(true);
             coffeeHandler.getCoffees().add(temp);
-            coffeeHandler.getDefaultCoffees().add(temp);
             setMenu();
         }
     }
@@ -225,7 +224,7 @@ public class CoffeeOverview {
             } else if (okClicked == 2) {
                 temp.setIsSpecial(true);
                 coffeeHandler.getCoffees().add(temp);
-                coffeeHandler.getDefaultCoffees().add(temp);
+
                 setMenu();
             }
         } else {
@@ -254,7 +253,7 @@ public class CoffeeOverview {
             } else if (okClicked == 2) {
                 temp.setIsSpecial(true);
                 coffeeHandler.getCoffees().add(temp);
-                coffeeHandler.getDefaultCoffees().add(temp);
+
                 setMenu();
             }
         } else {

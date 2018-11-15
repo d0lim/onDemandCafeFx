@@ -1,0 +1,6 @@
+.table-view .column-header-background,
+.table-view .column-header,
+.table-view .column-header .filter {
+    -fx-background-color: #b199ff;
+}
+

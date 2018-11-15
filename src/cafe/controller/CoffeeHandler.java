@@ -14,10 +14,10 @@ class CoffeeHandler {
     static private boolean isFirst = true;
 
     private static ObservableList<Coffee> coffees = FXCollections.observableArrayList();
-    private static ObservableList<Coffee> defaultCoffees = FXCollections.observableArrayList();
+
 
     static boolean isDefault(Coffee coffee) {
-        for (Coffee current : defaultCoffees) {
+        for (Coffee current : coffees) {
             if (current.getName().equals(coffee.getName()) && current.getIngreList().equals(coffee.getIngreList()))
                 return true;
         }
@@ -25,11 +25,19 @@ class CoffeeHandler {
     }
 
     static Coffee getSameIngredients(Coffee coffee) {
-        for (Coffee current : defaultCoffees) {
+        for (Coffee current : coffees) {
             if (coffee.getIngreList().containsAll(current.getIngreList()) && current.getIngreList().containsAll(coffee.getIngreList()))
                 return current;
         }
         return null;
+    }
+
+    static boolean isSameName(Coffee coffee) {
+        for (Coffee current : coffees) {
+            if (current.getName().equals(coffee.getName()))
+                return true;
+        }
+        return false;
     }
 
     ObservableList<Coffee> getCoffees() {
@@ -40,17 +48,12 @@ class CoffeeHandler {
         return coffees;
     }
 
-    ObservableList<Coffee> getDefaultCoffees() {
-        return defaultCoffees;
-    }
-
     private void initializeCoffee() {
         CoffeeFactory coffeeFactory = new CoffeeFactory();
         //ArrayList<Coffee> coffees=new ArrayList<Coffee>();
         ArrayList<Ingredient> tmpIngreList = new ArrayList<>();
 
         // make some Ingredient List
-
 
         // Americano
         tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
@@ -79,8 +82,6 @@ class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Chocolate Syrup"));
 
         coffees.add(coffeeFactory.createCoffee("Cafe Mocha", tmpIngreList));
-        defaultCoffees.addAll(coffees);
-
     }
 
 }

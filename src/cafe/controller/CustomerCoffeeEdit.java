@@ -36,6 +36,10 @@ public class CustomerCoffeeEdit {
     private TextField name;
     @FXML
     private Button okBtn;
+    @FXML
+    private Button cancelBtn;
+    @FXML
+    private Button saveBtn;
 
     private ObservableList<Ingredient> ingredients;
 
@@ -48,8 +52,8 @@ public class CustomerCoffeeEdit {
     private double rowSize = 0;
     private int numOfRow = 5;
 
-    private String btnDefault = "-fx-background-color: #c9d6df; ";
-    private String btnEntered = "-fx-background-color: #ffff73; ";
+    private String btnDefault = "-fx-background-color: rgba(182,182,255,0.87); ";
+    private String btnEntered = "-fx-background-color: #8a32ff; ";
 
     @FXML
     private void initialize() {
@@ -67,6 +71,8 @@ public class CustomerCoffeeEdit {
         selectedIngreName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         selectedIngrePrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
+
+        setThreeBtn();
         setIngreList();
         setIngreBtn();
         addButtonToSelectedTable();
@@ -86,6 +92,30 @@ public class CustomerCoffeeEdit {
         this.sum.setText("₩ " + this.coffee.getPrice());
     }
 
+    private void setThreeBtn() {
+        okBtn.setStyle(btnDefault);
+        saveBtn.setStyle(btnDefault);
+        cancelBtn.setStyle(btnDefault);
+        okBtn.setOnMouseEntered(ActionEvent -> {
+            okBtn.setStyle(btnEntered + "-fx-text-fill: white; ");
+        });
+        okBtn.setOnMouseExited(ActionEvent -> {
+            okBtn.setStyle(btnDefault);
+        });
+        saveBtn.setOnMouseEntered(ActionEvent -> {
+            saveBtn.setStyle(btnEntered + "-fx-text-fill: white; ");
+        });
+        saveBtn.setOnMouseExited(ActionEvent -> {
+            saveBtn.setStyle(btnDefault);
+        });
+        cancelBtn.setOnMouseEntered(ActionEvent -> {
+            cancelBtn.setStyle(btnEntered + "-fx-text-fill: white; ");
+        });
+        cancelBtn.setOnMouseExited(ActionEvent -> {
+            cancelBtn.setStyle(btnDefault);
+        });
+    }
+
     private void setIngreList() {
         this.ingredients = IngredientHandler.getIngredientObservableList();
     }
@@ -95,8 +125,8 @@ public class CustomerCoffeeEdit {
         button.setPrefSize(this.columnSize, this.rowSize);
         button.setStyle(btnDefault);
         button.setOnMouseEntered(ActionEvent -> {
-            button.setStyle(btnEntered);
-            button.setText("+");
+            button.setStyle(btnEntered + "-fx-text-fill: white; ");
+            button.setText("₩ " + String.valueOf(ingredient.getPrice()));
         });
         button.setOnMouseExited(ActionEvent -> {
             button.setStyle(btnDefault);
@@ -162,7 +192,16 @@ public class CustomerCoffeeEdit {
         if (isInputValid()) {
             coffee.setName(name.getText());
             coffee.setPrice(this.coffee.getPrice());
+            if (CoffeeHandler.isSameName(coffee)) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.initOwner(dialogStage);
+                alert.setTitle("Same Name Already");
+                alert.setHeaderText("Please select other name");
+                alert.setContentText("There's same name in the coffee list Already!");
 
+                alert.showAndWait();
+                return ;
+            }
             // okClicked = true;
             clickedButton = 2;
             dialogStage.close();
@@ -220,6 +259,13 @@ public class CustomerCoffeeEdit {
                         actionBtn.setOnAction((ActionEvent event) -> {
                             Ingredient clicked = getTableView().getItems().get(getIndex());
                             editIngreSelection(clicked, false);
+                        });
+                        actionBtn.setStyle(btnDefault);
+                        actionBtn.setOnMouseEntered(ActionEvent -> {
+                            actionBtn.setStyle(btnEntered + "-fx-text-fill: white; ");
+                        });
+                        actionBtn.setOnMouseExited(ActionEvent -> {
+                            actionBtn.setStyle(btnDefault);
                         });
                     }
 

@@ -64,7 +64,7 @@ public class ManagerCoffeeOverview {
         int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
-            coffeeHandler.getDefaultCoffees().add(temp);
+
         }
     }
 
@@ -73,7 +73,7 @@ public class ManagerCoffeeOverview {
     private void handleRemove(Coffee clicked) {
         if (clicked != null) {
             coffeeHandler.getCoffees().remove(clicked);
-            coffeeHandler.getDefaultCoffees().remove(clicked);
+
         } else {
             Alert alert = new Alert(AlertType.WARNING);
             //alert.initOwner(mainApp.getPrimaryStage());//왜오류떠?
@@ -98,7 +98,7 @@ public class ManagerCoffeeOverview {
                 clicked.getIngreList().addAll(temp.getIngreList());
             } else if (okClicked == 2) {
                 coffeeHandler.getCoffees().add(temp);
-                coffeeHandler.getDefaultCoffees().add(temp);
+
             }
         } else {
             Alert alert = new Alert(AlertType.WARNING);
