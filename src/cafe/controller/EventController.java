@@ -50,8 +50,8 @@ public class EventController {
     private IngredientFactory ingredientFactory = new IngredientFactory();
     //커피 TableView TalbleColumn 추가하기
     private Ingredient selectedIngredient = ingredientFactory.createIngredient();
-    private ObservableList<Ingredient> selectedIngredientList = FXCollections.observableArrayList();
-    private ObservableList<Coffee> selectedCoffeeList = FXCollections.observableArrayList();
+    private static ObservableList<Ingredient> selectedIngredientList = FXCollections.observableArrayList();
+    private static ObservableList<Coffee> selectedCoffeeList = FXCollections.observableArrayList();
     private Coffee selectedCoffee = coffeeFactory.createCoffee();
     private Coffee cancelingCoffee = coffeeFactory.createCoffee();
     private Ingredient cancelingIngredient = ingredientFactory.createIngredient();
@@ -199,15 +199,16 @@ public class EventController {
 
     private void cofSaleOn() {
         selectedCoffee.swap_price();
-        selectedCoffee.setName(selectedCoffee.getName()+"(On Sale)");
+        selectedCoffee.setName(selectedCoffee.getName()+"("+coffeePercent.getText() +"% Sale)");
     }
 
     private void cofSaleOff() {
         cancelingCoffee.swap_price();
+        cancelingCoffee.Saleoff();
         int startIndex = cancelingCoffee.getName().indexOf("(");
         int endIndex = cancelingCoffee.getName().indexOf(")");
         String replacement = "";
-        String toBeReplaced = cancelingCoffee.getName().substring(startIndex + 1, endIndex);
+        String toBeReplaced = cancelingCoffee.getName().substring(startIndex , endIndex+1);
         cancelingCoffee.setName(cancelingCoffee.getName().replace(toBeReplaced, replacement));
     }
 

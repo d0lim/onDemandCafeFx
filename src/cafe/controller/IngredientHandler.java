@@ -14,6 +14,7 @@ class IngredientHandler {
 
     private static ObservableList<Ingredient> ingredientObservableList = FXCollections.observableArrayList();
 
+    
     static ObservableList<Ingredient> getIngredientObservableList() {
         if (isFirst) {
             initalizeIngredient();
@@ -22,6 +23,7 @@ class IngredientHandler {
         return ingredientObservableList;
     }
 
+    
     static void initalizeIngredient() {
         IngredientFactory ingredientFactory = new IngredientFactory();
         if (isFirst) {
@@ -30,6 +32,10 @@ class IngredientHandler {
             ingredientObservableList.add(ingredientFactory.createIngredient("Steamed Milk", 1000));
             ingredientObservableList.add(ingredientFactory.createIngredient("Water", 3000));
             ingredientObservableList.add(ingredientFactory.createIngredient("Chocolate Syrup", 5000));
+            ingredientObservableList.add(ingredientFactory.createIngredient("Whipped Cream", 10000));
+            ingredientObservableList.add(ingredientFactory.createIngredient("Milk Foam", 2500));
+            ingredientObservableList.add(ingredientFactory.createIngredient("Vanilla Syrup", 1000));
+            
         }
     }
 

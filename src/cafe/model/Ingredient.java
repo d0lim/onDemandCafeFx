@@ -11,6 +11,7 @@ public class Ingredient {
     private StringProperty name;
     private IntegerProperty price;
     private IntegerProperty saleprice;
+   
 
     public Ingredient() {
         this(null, 0); // 주석 UTF8로 다시 적어주세용
@@ -47,7 +48,6 @@ public class Ingredient {
 
     public void setSalePrice(int m) {
         this.saleprice = new SimpleIntegerProperty(m);
-
     }
 
     public IntegerProperty getSaleProperty() {
@@ -58,8 +58,9 @@ public class Ingredient {
         IntegerProperty temp;
         temp = price;
         price = saleprice;
-        saleprice = temp;
+        saleprice = temp;  
     }
+    
 
 
 }

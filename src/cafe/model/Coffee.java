@@ -15,6 +15,7 @@ public class Coffee {
     private IntegerProperty saleprice;
     private ArrayList<Ingredient> ingreList = new ArrayList<>();
     private Boolean isSpecial = false;
+    private int sale;
 
     public Coffee() {
         this(null, 0); // 주석 UTF8로 다시 적어주세용
@@ -83,11 +84,14 @@ public class Coffee {
 
     public void setSalePrice(int m) {
         this.saleprice = new SimpleIntegerProperty(m);
-
+        this.sale=1;
     }
 
     public IntegerProperty getSaleProperty() {
         return saleprice;
+    }
+    public void Saleoff() {
+    	this.sale=0;
     }
 
     public void swap_price() {
@@ -95,6 +99,10 @@ public class Coffee {
         temp = price;
         price = saleprice;
         saleprice = temp;
+    }
+   
+    public int checksale() {
+    	return this.sale;
     }
 
 }

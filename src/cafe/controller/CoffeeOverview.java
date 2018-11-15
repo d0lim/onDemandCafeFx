@@ -76,14 +76,29 @@ public class CoffeeOverview {
         addButtonToSelectedCoffeeTable();
         addEditButtonToSelectedCoffeeTable();
 
+        
     }
 
     private void setCoffeeList() {
         this.coffeeHandler = new CoffeeHandler();
     }
+    private void setbuttonname (Coffee coffee,Button button) {
+    	button.setText(coffee.getName());
+    	if(coffee.checksale()==1) {
+        int startIndex = coffee.getName().indexOf("(");
+        int endIndex = coffee.getName().indexOf(")");
+        String replacement = "\n(On Sale";
+        String toBeReplaced = coffee.getName().substring(startIndex, endIndex);
+        button.setText(coffee.getName().replace(toBeReplaced, replacement));
+       
+    	}
+    }
 
     private Button createButton(Coffee coffee, Boolean isSpecial) {
         Button button = new Button(coffee.getName());
+        setbuttonname(coffee,button);
+        button.setStyle(btnDefault);
+        
         button.setPrefSize(this.columnSize, this.rowSize);
         button.setStyle(btnDefault);
         if (isSpecial) {
@@ -99,7 +114,7 @@ public class CoffeeOverview {
         });
         button.setOnMouseExited(ActionEvent -> {
             button.setStyle(btnDefault);
-            button.setText(coffee.getName());
+            setbuttonname(coffee,button);
             if (isSpecial) {
                 button.setStyle(btnDefault + btnSpecial);
             }

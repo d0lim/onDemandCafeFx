@@ -82,6 +82,17 @@ class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Chocolate Syrup"));
 
         coffees.add(coffeeFactory.createCoffee("Cafe Mocha", tmpIngreList));
+        
+        
+        tmpIngreList = new ArrayList<>();
+
+        // Cafe Mocha
+        tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Steamed Milk"));
+        tmpIngreList.add(IngredientHandler.findIngredint("Vanilla Syrup"));
+
+        coffees.add(coffeeFactory.createCoffee("Vanilla Latte", tmpIngreList));
+        
     }
 
 }
