@@ -60,7 +60,7 @@
                   </TableView>
                   <Label fx:id="sum" layoutX="21.0" layoutY="640.0" prefHeight="41.0" prefWidth="230.0" style="-fx-background-color: f0f5f9;" text="₩">
                      <font>
-                        <Font name="Apple SD Gothic Neo Heavy" size="30.0" />
+                        <Font  size="30.0" />
                      </font></Label>
                   <Button fx:id="order" defaultButton="true" layoutX="274.0" layoutY="630.0" mnemonicParsing="false" onAction="#handleReceiptButton" prefHeight="61.0" prefWidth="190.0" style="-fx-background-color: c9d6df;" text="Order" />
                   <Button layoutX="444.0" mnemonicParsing="false" onAction="#goback" prefHeight="41.0" prefWidth="34.0" style="-fx-background-color: c9d6df;" text="x" />
