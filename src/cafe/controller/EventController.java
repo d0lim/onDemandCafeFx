@@ -102,9 +102,6 @@ public class EventController {
 
     private void alert(String message) {
         Alert alert = new Alert(AlertType.ERROR);
-        //alert.initOwner(dialogStage);
-        //alert.setTitle("Invalid");
-        //alert.setHeaderText("Please correct invalid fields");
         alert.setContentText(message);
         alert.showAndWait();
     }
@@ -186,18 +183,23 @@ public class EventController {
 
     private void ingSaleOn() {
         selectedIngredient.swap_price();
+        selectedIngredient.setName(selectedIngredient.getName()+"(On Sale)");
+        
     }
 
     private void ingSaleOff() {
         cancelingIngredient.swap_price();
+        cancelingIngredient.setName(cancelingIngredient.getName().replace("(On Sale)", ""));
     }
 
     private void cofSaleOn() {
         selectedCoffee.swap_price();
+        selectedCoffee.setName(selectedCoffee.getName()+"(On Sale)");
     }
 
     private void cofSaleOff() {
         cancelingCoffee.swap_price();
+        cancelingCoffee.setName(cancelingCoffee.getName().replace("(On Sale)", ""));
     }
 
     @FXML
