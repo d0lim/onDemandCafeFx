@@ -63,14 +63,14 @@ public class Receipt {
 
     @FXML
     private void handleYes() {
-        System.out.println("Print Receipt!");
+       
         isBtnClicked = true;
         dialogStage.close();
     }
 
     @FXML
     private void handleNo() {
-        System.out.println("Don't Print Receipt!");
+        
         isBtnClicked = true;
         dialogStage.close();
     }

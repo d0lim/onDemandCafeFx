@@ -22,7 +22,6 @@ public class StartScreenController {
 
     @FXML
     public void handleowner() {
-        System.out.println("clicked owner");
         MainApp.showOwnerTabs();
     }
 
