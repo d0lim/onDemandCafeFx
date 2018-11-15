@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Coffee extends Ingredient{
+public class Coffee {
 
     private StringProperty name;
     private IntegerProperty price;
