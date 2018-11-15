@@ -38,3 +38,5 @@ src/cafe/view/NewCoffeeOverview\.fxml
 src/cafe/controller/AddRemove\.java
 
 src/cafe/view/addRemove\.fxml
+
+OnDemandCafe

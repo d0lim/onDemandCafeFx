@@ -21,6 +21,7 @@ public class ManagerCoffeeOverview {
     private CoffeeHandler coffeeHandler;
 
     private MainApp mainApp;
+    private CoffeeFactory coffeeFactory = new CoffeeFactory();
 
 
     @FXML
@@ -59,7 +60,7 @@ public class ManagerCoffeeOverview {
 
     @FXML
     private void handleNewCoffee() {
-        Coffee temp = new Coffee();
+        Coffee temp = coffeeFactory.createCoffee();
         int okClicked = MainApp.showCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             coffeeHandler.getCoffees().add(temp);
@@ -85,7 +86,7 @@ public class ManagerCoffeeOverview {
 
     private void handleEdit(Coffee clicked) {
         if (clicked != null) {
-            Coffee temp = new Coffee();
+            Coffee temp = coffeeFactory.createCoffee();
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());

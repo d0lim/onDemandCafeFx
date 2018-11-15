@@ -70,8 +70,9 @@ public class IngredientOverview {
 
     @FXML
     private void handleNewIngredient() {
+        IngredientFactory ingredientFactory = new IngredientFactory();
 
-        Ingredient temp = new Ingredient();
+        Ingredient temp = ingredientFactory.createIngredient();
 
         boolean okClicked = MainApp.showIngredientEditDialog(temp);
         if (okClicked) {

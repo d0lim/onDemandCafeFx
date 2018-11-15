@@ -17,91 +17,86 @@ public class EventController {
 
     @FXML
     private TableView<Ingredient> ingredientTable;
-
     @FXML
-    private TableColumn<Ingredient, String> ingredientname;
+    private TableColumn<Ingredient, String> ingredientName;
     @FXML
-    private TableColumn<Ingredient, Integer> ingredientprice;
+    private TableColumn<Ingredient, Integer> ingredientPrice;
     @FXML
     private TableView<Coffee> coffeeTable;
     @FXML
     private TableColumn<Coffee, String> coffeeName;
     @FXML
     private TableColumn<Coffee, Integer> coffeeOriginalPrice;
-
     @FXML
     private TableView<Ingredient> selectedIngTable;
     @FXML
     private TableView<Coffee> selectedCofTable;
     @FXML
-    private TableColumn<Coffee, String> selectedcofname;
+    private TableColumn<Coffee, String> selectedCofName;
     @FXML
-    private TableColumn<Coffee, Integer> changedcofprice;
+    private TableColumn<Coffee, Integer> changedCofPrice;
     @FXML
-    private TableColumn<Ingredient, String> selectedingname;
-
+    private TableColumn<Ingredient, String> selectedIngName;
     @FXML
     private TableColumn<Ingredient, Integer> selectedingprice;
-
     @FXML
-    private TableColumn<Ingredient, Integer> changedingprice;
-
+    private TableColumn<Ingredient, Integer> changedIngPrice;
     @FXML
-    private TextField percentage_ing;
-
+    private TextField ingredientPercent;
     @FXML
-    private TextField percentage_cof;
+    private TextField coffeePercent;
 
-
+    private CoffeeFactory coffeeFactory = new CoffeeFactory();
+    private IngredientFactory ingredientFactory = new IngredientFactory();
     //커피 TableView TalbleColumn 추가하기
-    private Ingredient selected_i = new Ingredient();
-    private ObservableList<Ingredient> selected_is = FXCollections.observableArrayList();
-    private ObservableList<Coffee> selected_cs = FXCollections.observableArrayList();
-    private Coffee selected_c = new Coffee();
-    private Coffee canceling_c = new Coffee();
-    private Ingredient canceling_i = new Ingredient();
+    private Ingredient selectedIngredient = ingredientFactory.createIngredient();
+    private ObservableList<Ingredient> selectedIngredientList = FXCollections.observableArrayList();
+    private ObservableList<Coffee> selectedCoffeeList = FXCollections.observableArrayList();
+    private Coffee selectedCoffee = coffeeFactory.createCoffee();
+    private Coffee cancelingCoffee = coffeeFactory.createCoffee();
+    private Ingredient cancelingIngredient = ingredientFactory.createIngredient();
 
     private CoffeeHandler coffeeHandler;
 
 
     @FXML
     private void initialize() {
-        manage_ingredient_events();
-        manage_coffee_events();
+        manageIngredientEvents();
+        manageCoffeeEvents();
     }
 
-    private void manage_ingredient_events() {
+    private void manageIngredientEvents() {
         ingredientTable.setItems(IngredientHandler.getIngredientObservableList());
-        ingredientname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        ingredientprice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
+        ingredientName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        ingredientPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
         ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selected_i = newValue;
+            selectedIngredient = newValue;
         });
         selectedIngTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            canceling_i = newValue;
+            cancelingIngredient = newValue;
         });
 
-        selectedIngTable.setItems(selected_is);
-        selectedingname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        changedingprice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
+        selectedIngTable.setItems(selectedIngredientList);
+        selectedIngName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        changedIngPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
     }
 
-    private void manage_coffee_events() {
+    private void manageCoffeeEvents() {
         coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         coffeeOriginalPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
         setCoffeeList();
 
         coffeeTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            selected_c = newValue;
+            selectedCoffee = newValue;
         });
         selectedCofTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            canceling_c = newValue;
+            cancelingCoffee = newValue;
         });
 
-        selectedCofTable.setItems(selected_cs);
-        selectedcofname.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-        changedcofprice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
+        selectedCofTable.setItems(selectedCoffeeList);
+        selectedCofName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        changedCofPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
 
     }
 
@@ -115,28 +110,28 @@ public class EventController {
     }
 
     @FXML
-    private void handle_ingredient_sale() {
+    private void handleIngredientSale() {
         int changedprice = 0;
         //percentage에 정수가 안들어오는 경우 체크해줘야됨
-        if (check_ingsale()) {
+        if (checkIngSale()) {
 
-            if (selected_i != null) {
+            if (selectedIngredient != null) {
 
-                changedprice = selected_i.getPrice() - (selected_i.getPrice() * Integer.parseInt(percentage_ing.getText()) / 100);
+                changedprice = selectedIngredient.getPrice() - (selectedIngredient.getPrice() * Integer.parseInt(ingredientPercent.getText()) / 100);
 
-                selected_i.setSalePrice(changedprice);//여기오류
-                selected_is.add(selected_i);
+                selectedIngredient.setSalePrice(changedprice);//여기오류
+                selectedIngredientList.add(selectedIngredient);
 
-                ing_tosale();
+                ingSaleOn();
 
-                refresh_coffees();
+                refreshCoffees();
             }
         }
     }
 
-    private boolean check_ingsale() {
-        for (Ingredient temp : selected_is) {
-            if (selected_i.equals(temp)) {
+    private boolean checkIngSale() {
+        for (Ingredient temp : selectedIngredientList) {
+            if (selectedIngredient.equals(temp)) {
                 alert("already on sale");
                 return false;
             }
@@ -144,7 +139,7 @@ public class EventController {
         return true;
     }
 
-    private void refresh_coffees() {
+    private void refreshCoffees() {
         ObservableList<Coffee> coffeeList = this.coffeeHandler.getCoffees();
 
         for (Coffee current : coffeeList) {
@@ -154,28 +149,28 @@ public class EventController {
     }
 
     @FXML
-    private void handle_coffee_sale() {
+    private void handleCoffeeSale() {
         int changedprice = 0;
         //percentage에 정수가 안들어오는 경우 체크해줘야됨
-        if (check_cofsale()) {
+        if (checkCofSale()) {
 
-            if (selected_c != null) {
+            if (selectedCoffee != null) {
 
-                changedprice = selected_c.getPrice() - (selected_c.getPrice() * Integer.parseInt(percentage_cof.getText()) / 100);
+                changedprice = selectedCoffee.getPrice() - (selectedCoffee.getPrice() * Integer.parseInt(coffeePercent.getText()) / 100);
 
-                selected_c.setSalePrice(changedprice);//여기오류
-                selected_cs.add(selected_c);
+                selectedCoffee.setSalePrice(changedprice);//여기오류
+                selectedCoffeeList.add(selectedCoffee);
 
-                cof_tosale();
+                cofSaleOn();
 
-                //refresh_coffees();
+                //refreshCoffees();
             }
         }
     }
 
-    private boolean check_cofsale() {
-        for (Coffee temp : selected_cs) {
-            if (selected_c.equals(temp)) {
+    private boolean checkCofSale() {
+        for (Coffee temp : selectedCoffeeList) {
+            if (selectedCoffee.equals(temp)) {
                 alert("already on sale");
                 return false;
             }
@@ -189,36 +184,36 @@ public class EventController {
         this.coffeeTable.setItems(coffeeHandler.getCoffees());
     }
 
-    private void ing_tosale() {
-        selected_i.swap_price();
+    private void ingSaleOn() {
+        selectedIngredient.swap_price();
     }
 
-    private void ing_offsale() {
-        canceling_i.swap_price();
+    private void ingSaleOff() {
+        cancelingIngredient.swap_price();
     }
 
-    private void cof_tosale() {
-        selected_c.swap_price();
+    private void cofSaleOn() {
+        selectedCoffee.swap_price();
     }
 
-    private void cof_offsale() {
-        canceling_c.swap_price();
-    }
-
-    @FXML
-    private void cancel_ing_sale() {
-        ing_offsale();
-        selected_is.remove(canceling_i);
+    private void cofSaleOff() {
+        cancelingCoffee.swap_price();
     }
 
     @FXML
-    private void cancel_cof_sale() {
-        cof_offsale();
-        selected_cs.remove(canceling_c);
+    private void cancelIngSale() {
+        ingSaleOff();
+        selectedIngredientList.remove(cancelingIngredient);
     }
 
     @FXML
-    private void goback() {
+    private void cancelCofSale() {
+        cofSaleOff();
+        selectedCoffeeList.remove(cancelingCoffee);
+    }
+
+    @FXML
+    private void goBack() {
         MainApp.start_program();
     }
 

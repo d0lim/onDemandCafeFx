@@ -35,6 +35,8 @@ public class CoffeeOverview {
     @FXML
     private Button order;
 
+    private CoffeeFactory coffeeFactory = new CoffeeFactory();
+
     private CoffeeHandler coffeeHandler;
 
     private MainApp mainApp;
@@ -196,7 +198,7 @@ public class CoffeeOverview {
 
     @FXML
     private void handleNewCoffee() {
-        Coffee temp = new Coffee();
+        Coffee temp = coffeeFactory.createCoffee();
         int okClicked = MainApp.showCustomerCoffeeEditDialog(temp, false, false);
         if (okClicked == 2) {
             temp.setIsSpecial(true);
@@ -209,7 +211,7 @@ public class CoffeeOverview {
     // Event of order button from callback function
     private void handleMakeOrder(Coffee selected) {
         if (selected != null) {
-            Coffee temp = new Coffee();
+            Coffee temp = coffeeFactory.createCoffee();
             temp.setName(selected.getName());
             temp.setPrice(selected.getPrice());
             temp.getIngreList().addAll(selected.getIngreList());
@@ -238,7 +240,7 @@ public class CoffeeOverview {
 
     private void handleEdit(Coffee clicked) {
         if (selectedCoffeeTable != null) {
-            Coffee temp = new Coffee();
+            Coffee temp = coffeeFactory.createCoffee();
             temp.setName(clicked.getName());
             temp.setPrice(clicked.getPrice());
             temp.getIngreList().addAll(clicked.getIngreList());

@@ -30,23 +30,23 @@
                      <children>
                         <TableView fx:id="ingredientTable" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn fx:id="ingredientname" prefWidth="135.0" text="Ingredient" />
-                              <TableColumn fx:id="ingredientprice" prefWidth="144.0" text="Original Price" />
+                            <TableColumn fx:id="ingredientName" prefWidth="135.0" text="Ingredient" />
+                              <TableColumn fx:id="ingredientPrice" prefWidth="144.0" text="Original Price" />
                           </columns>
                         </TableView>
                         <TableView fx:id="selectedIngTable" prefHeight="645.0" prefWidth="279.0" GridPane.columnIndex="1">
                           <columns>
-                            <TableColumn fx:id="selectedingname" prefWidth="103.0" text="Selected" />
-                              <TableColumn fx:id="changedingprice" prefWidth="176.0" text="Changed Price" />
+                            <TableColumn fx:id="selectedIngName" prefWidth="103.0" text="Selected" />
+                              <TableColumn fx:id="changedIngPrice" prefWidth="176.0" text="Changed Price" />
                           </columns>
                         </TableView>
                      </children>
                   </GridPane>
-                  <TextField fx:id="percentage_ing" layoutX="92.0" layoutY="596.0" prefHeight="29.0" prefWidth="70.0" />
-                  <Button fx:id="cancelsale" layoutX="448.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_ing_sale" text="delete" />
+                  <TextField fx:id="ingredientPercent" layoutX="92.0" layoutY="596.0" prefHeight="29.0" prefWidth="70.0" />
+                  <Button fx:id="cancelsale" layoutX="448.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancelIngSale" text="delete" />
                   <Label layoutX="330.0" layoutY="55.0" text="할인중" />
-                  <Button fx:id="onsale" layoutX="189.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_ingredient_sale" text="Sale" />
-                  <Button layoutX="1162.0" layoutY="14.0" mnemonicParsing="false" onAction="#goback" prefHeight="35.0" prefWidth="90.0" text="Back" />
+                  <Button fx:id="onsale" layoutX="189.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleIngredientSale" text="Sale" />
+                  <Button layoutX="1162.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="35.0" prefWidth="90.0" text="Back" />
                   <Label layoutX="50.0" layoutY="55.0" text="Ingredients" />
                   <Label layoutX="668.0" layoutY="55.0" text="Coffee" />
                   <GridPane layoutX="668.0" layoutY="78.0" prefHeight="509.0" prefWidth="560.0">
@@ -69,16 +69,16 @@
                         </TableView>
                         <TableView fx:id="selectedCofTable" prefHeight="248.0" prefWidth="311.0" GridPane.columnIndex="1">
                            <columns>
-                              <TableColumn fx:id="selectedcofname" prefWidth="124.0" text="Selected" />
-                              <TableColumn fx:id="changedcofprice" prefWidth="155.0" text="Changed Price" />
+                              <TableColumn fx:id="selectedCofName" prefWidth="124.0" text="Selected" />
+                              <TableColumn fx:id="changedCofPrice" prefWidth="155.0" text="Changed Price" />
                            </columns>
                         </TableView>
                      </children>
                   </GridPane>
-                  <TextField fx:id="percentage_cof" layoutX="726.0" layoutY="596.0" prefHeight="29.0" prefWidth="63.0" />
+                  <TextField fx:id="coffeePercent" layoutX="726.0" layoutY="596.0" prefHeight="29.0" prefWidth="63.0" />
                   <Label layoutX="796.0" layoutY="601.0" text="\%" />
-                  <Button layoutX="822.0" layoutY="596.0" mnemonicParsing="false" onAction="#handle_coffee_sale" text="Sale" />
-                  <Button layoutX="1071.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancel_cof_sale" text="delete" />
+                  <Button layoutX="822.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleCoffeeSale" text="Sale" />
+                  <Button layoutX="1071.0" layoutY="596.0" mnemonicParsing="false" onAction="#cancelCofSale" text="delete" />
                   <Label layoutX="952.0" layoutY="57.0" text="할인중" />
                </children>
             </AnchorPane>

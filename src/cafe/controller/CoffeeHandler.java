@@ -45,6 +45,7 @@ class CoffeeHandler {
     }
 
     private void initializeCoffee() {
+        CoffeeFactory coffeeFactory = new CoffeeFactory();
         //ArrayList<Coffee> coffees=new ArrayList<Coffee>();
         ArrayList<Ingredient> tmpIngreList = new ArrayList<>();
 
@@ -55,7 +56,7 @@ class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Espresso"));
         tmpIngreList.add(IngredientHandler.findIngredint("Water"));
 
-        coffees.add(new Coffee("Americano", tmpIngreList));
+        coffees.add(coffeeFactory.createCoffee("Americano", tmpIngreList));
 
 
         // init
@@ -66,7 +67,7 @@ class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Water"));
         tmpIngreList.add(IngredientHandler.findIngredint("Steamed Milk"));
 
-        coffees.add(new Coffee("Cafe Latte", tmpIngreList));
+        coffees.add(coffeeFactory.createCoffee("Cafe Latte", tmpIngreList));
 
         // init
         tmpIngreList = new ArrayList<>();
@@ -77,7 +78,7 @@ class CoffeeHandler {
         tmpIngreList.add(IngredientHandler.findIngredint("Steamed Milk"));
         tmpIngreList.add(IngredientHandler.findIngredint("Chocolate Syrup"));
 
-        coffees.add(new Coffee("Cafe Mocha", tmpIngreList));
+        coffees.add(coffeeFactory.createCoffee("Cafe Mocha", tmpIngreList));
         defaultCoffees.addAll(coffees);
 
     }
