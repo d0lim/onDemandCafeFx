@@ -83,9 +83,9 @@ public class EventController {
     }
 
     private void manageCoffeeEvents() {
+    	setCoffeeList();
         coffeeName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         coffeeOriginalPrice.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty().asObject());
-        setCoffeeList();
 
         coffeeTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedCoffee = newValue;
