@@ -38,7 +38,7 @@ public class MainApp extends Application {
     public static void start_program() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/StartScreen.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/StartScreen.fxml"));
             AnchorPane start = loader.load();
 
             rootLayout.setCenter(start);
@@ -60,7 +60,7 @@ public class MainApp extends Application {
         try {
             // 주석 UTF8로 다시 적어주세용
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/Rootlayout.fxml"));
             rootLayout = loader.load();
 
             // 주석 UTF8로 다시 적어주세용
@@ -76,7 +76,7 @@ public class MainApp extends Application {
     public static void showOwnerTabs() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/OwnerTabs.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/OwnerTabs.fxml"));
             AnchorPane OwnerTab = loader.load();
 
             rootLayout.setCenter(OwnerTab);
@@ -92,7 +92,7 @@ public class MainApp extends Application {
     public static void showCustomerPage() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/CoffeeOverview.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/CoffeeOverview.fxml"));
             AnchorPane CustomerPage = loader.load();
 
             rootLayout.setCenter(CustomerPage);
@@ -109,7 +109,7 @@ public class MainApp extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/IngredientEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/IngredientEditDialog.fxml"));
             AnchorPane page = loader.load();
 
 
@@ -147,7 +147,7 @@ public class MainApp extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/Receipt.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/Receipt.fxml"));
             AnchorPane page = loader.load();
 
 
@@ -189,7 +189,7 @@ public class MainApp extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/CoffeeEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/CoffeeEditDialog.fxml"));
             AnchorPane page = loader.load();
 
 
@@ -227,7 +227,7 @@ public class MainApp extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/CustomerCoffeeEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getClassLoader().getResource("cafe/view/CustomerCoffeeEditDialog.fxml"));
             AnchorPane page = loader.load();
 
 
